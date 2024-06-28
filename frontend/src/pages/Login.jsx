@@ -37,7 +37,7 @@ export default function Login() {
       onSubmit={onSubmit}
     >
       <h2 className="text-2xl font-bold text-slate-800">Welcome Back</h2>
-      <div className="flex flex-col gap-2">
+      <div className="flex flex-col gap-4">
         <label className="text-gray-700 text-base font-bold flex-1">
           Email
           <input

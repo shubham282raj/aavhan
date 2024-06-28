@@ -1,5 +1,6 @@
 import { userProfile } from "../api-clients";
 import { useQuery } from "react-query";
+import SignOutButton from "../components/SignOutBtn";
 
 export default function Profile() {
   const { data: user = {} } = useQuery({
@@ -28,6 +29,7 @@ export default function Profile() {
           </p>
         ))}
       </div>
+      <SignOutButton />
     </div>
   );
 }
