@@ -1,8 +1,13 @@
 import { useForm } from "react-hook-form";
-import { useMutation } from "react-query";
+import { useMutation, useQueryClient } from "react-query";
 import { registerUser } from "../api-clients";
+import { useAppContext } from "../contexts/AppContext";
+import { useNavigate } from "react-router-dom";
 
 export default function Register() {
+  const { showToast } = useAppContext();
+  const queryClient = useQueryClient();
+
   const {
     register,
     handleSubmit,
@@ -10,12 +15,16 @@ export default function Register() {
     formState: { errors },
   } = useForm();
 
+  const navigate = useNavigate();
+
   const mutation = useMutation(registerUser, {
     onSuccess() {
-      console.log("Success");
+      navigate("/");
+      queryClient.invalidateQueries("validateToken");
+      showToast("Registration Successfull");
     },
     onError(error) {
-      console.log(error.message);
+      showToast(error, "ERROR");
     },
   });
 
@@ -28,7 +37,7 @@ export default function Register() {
       className=" bg-white flex flex-col gap-4 mx-auto my-10 p-10 rounded-2xl max-w-screen-md"
       onSubmit={onSubmit}
     >
-      <h2 className="text-2xl font-bold text-slate-800">Create an Account</h2>
+      <h2 className="text-2xl font-bold text-slate-800">Registration Form</h2>
       <div className="flex flex-col gap-2">
         <label className="text-gray-700 text-base font-bold flex-1">
           Name
@@ -214,7 +223,7 @@ export default function Register() {
           className="bg-gray-700 rounded m-auto text-white p-2 font-bold w-40"
           disabled={mutation.isLoading}
         >
-          {mutation.isLoading ? "Wait" : "Create Account"}
+          {mutation.isLoading ? "Please Wait" : "Register"}
         </button>
       </div>
     </form>

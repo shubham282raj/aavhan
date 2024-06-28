@@ -15,7 +15,7 @@ export const AppContextProvider = ({ children }) => {
     <AppContext.Provider
       value={{
         isLoggedIn: isSuccess,
-        showToast: (message, type) => setToast({ message, type }),
+        showToast: (message, type = "SUCCESS") => setToast({ message, type }),
       }}
     >
       {children}

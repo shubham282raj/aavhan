@@ -1,20 +1,29 @@
 import { useForm } from "react-hook-form";
-import { useMutation } from "react-query";
+import { useMutation, useQueryClient } from "react-query";
 import { loginUser } from "../api-clients";
+import { useAppContext } from "../contexts/AppContext";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function Login() {
+  const { showToast } = useAppContext();
+  const queryClient = useQueryClient();
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
 
+  const navigate = useNavigate();
+
   const mutation = useMutation(loginUser, {
     onSuccess() {
-      console.log("Success");
+      navigate("/");
+      queryClient.invalidateQueries("validateToken");
+      showToast("Logged In Successfully");
     },
     onError(error) {
-      console.log(error.message);
+      showToast(error, "ERROR");
     },
   });
 
@@ -69,12 +78,18 @@ export default function Login() {
             </p>
           )}
         </label>
+        <div className="m-auto">
+          Haven't Registered Yet?{" "}
+          <Link to={"/register"} className="underline hover:text-blue-800">
+            Join Us
+          </Link>
+        </div>
         <button
           type="submit"
           className="bg-gray-700 rounded m-auto text-white p-2 font-bold w-40"
           disabled={mutation.isLoading}
         >
-          {mutation.isLoading ? "Plesase Wait" : "Login"}
+          {mutation.isLoading ? "Please Wait" : "Login"}
         </button>
       </div>
     </form>

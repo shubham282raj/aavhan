@@ -29,7 +29,11 @@ auth.post(
   async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-      return res.status(400).send({ message: errors.array() });
+      const errorMessage = errors
+        .array()
+        .map((error) => `${error.msg}`)
+        .join(", ");
+      return res.status(400).send({ message: errorMessage });
     }
 
     const { email, password } = req.body;

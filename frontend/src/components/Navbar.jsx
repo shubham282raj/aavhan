@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { useAppContext } from "../contexts/AppContext";
 
 export default function Navbar() {
-  const isLoggedIn = false;
+  const { isLoggedIn } = useAppContext();
 
   const [toggleMenu, setToggleMenu] = useState(false);
 

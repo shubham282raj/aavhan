@@ -18,7 +18,7 @@ const Toast = ({ message, type, onClose }) => {
   return (
     <div className={styles + " select-none"} onClick={onClose}>
       <div className="flex justify-center items-center">
-        <span className="text-lg font-semibold">{message}</span>
+        <span className="text-lg font-semibold">{String(message)}</span>
       </div>
     </div>
   );
