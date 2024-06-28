@@ -19,10 +19,13 @@ export default function Navbar() {
       ];
 
   return (
-    <div className="bg-gray-200 py-3 flex flex-col sm:flex-row justify-between items-center">
-      <div className="flex justify-between w-full sm:w-auto">
+    <div className="bg-white p-3 min-h-[60px] sm:min-h-[70px] flex flex-col sm:flex-row justify-between items-center">
+      <div className="flex items-center justify-between w-full sm:w-auto">
         <span className="text-3xl font-bold tracking-tight">
-          <Link to="/">Aavhan</Link>
+          <Link to="/" className="flex h-[25px] gap-1">
+            <img src="/logo.png" alt="logo" className="scale-150" />
+            <img src="/text_logo.png" alt="textLogo" />
+          </Link>
         </span>
         <div
           className="sm:hidden text-3xl cursor-pointer"
