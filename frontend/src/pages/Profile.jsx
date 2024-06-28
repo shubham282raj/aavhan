@@ -31,7 +31,7 @@ export default function Profile() {
 
   return (
     <div className="xl:flex gap-2">
-      <div className="xl:sticky xl:w-full xl:max-h-[60vh] bg-white flex flex-col gap-4 mx-auto mt-10 mb-5 py-10 px-20 rounded-2xl max-w-screen-md">
+      <div className="xl:sticky xl:top-[70px] xl:w-full xl:max-h-[60vh] bg-white flex flex-col gap-4 mx-auto mt-10 mb-5 py-10 px-20 rounded-2xl max-w-screen-md">
         <div className="text-2xl m-auto font-bold tracking-wide text-slate-800">
           Profile
         </div>
@@ -53,7 +53,7 @@ export default function Profile() {
         <SignOutButton />
       </div>
       <div>
-        <div className="block w-32 xl:w-full bg-white mx-auto p-2 text-center text-xl m-auto mt-10 mb-5 font-bold tracking-wide text-slate-800 rounded-xl">
+        <div className="xl:sticky xl:top-[70px] xl:border-b-2 xl:border-b-slate-800 block w-32 xl:w-full bg-white mx-auto p-2 text-center text-xl m-auto mt-10 mb-5 font-bold tracking-wide text-slate-800 rounded-xl">
           Tasks
         </div>
         {user.taskList
