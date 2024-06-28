@@ -13,7 +13,7 @@ export default function Navbar() {
       ]
     : [
         ["/", "Home"],
-        ["/join-us", "Join Us!"],
+        ["/register", "Join Us!"],
         ["/login", "Login"],
       ];
 
