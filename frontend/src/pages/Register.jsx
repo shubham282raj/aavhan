@@ -1,4 +1,6 @@
 import { useForm } from "react-hook-form";
+import { useMutation } from "react-query";
+import { registerUser } from "../api-clients";
 
 export default function Register() {
   const {
@@ -8,8 +10,17 @@ export default function Register() {
     formState: { errors },
   } = useForm();
 
+  const mutation = useMutation(registerUser, {
+    onSuccess() {
+      console.log("Success");
+    },
+    onError(error) {
+      console.log(error.message);
+    },
+  });
+
   const onSubmit = handleSubmit((data) => {
-    console.log(data);
+    if (!mutation.isLoading) mutation.mutate(data);
   });
 
   return (
@@ -55,7 +66,7 @@ export default function Register() {
           Course Pursuing
           <input
             className="border rounded w-full py-1 px-2 font-normal"
-            {...register("coursePersuing", {
+            {...register("coursePursuing", {
               required: "Course Pursuing is required",
               maxLength: {
                 value: 100,
@@ -201,8 +212,9 @@ export default function Register() {
         <button
           type="submit"
           className="bg-gray-700 rounded m-auto text-white p-2 font-bold w-40"
+          disabled={mutation.isLoading}
         >
-          Create Account
+          {mutation.isLoading ? "Wait" : "Create Account"}
         </button>
       </div>
     </form>
