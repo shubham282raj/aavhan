@@ -70,4 +70,12 @@ auth.get("/validate-token", verifyToken, (req, res) => {
   res.status(200).send({ userId: req.userId });
 });
 
+auth.post("/logout", (req, res) => {
+  res.cookie("auth_token", "", {
+    expires: new Date(0),
+  });
+
+  res.status(200).send({ message: "Signed out successfully" });
+});
+
 export default auth;
