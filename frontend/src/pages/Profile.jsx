@@ -2,15 +2,13 @@ import { userProfile } from "../api-clients";
 import { useQuery } from "react-query";
 import SignOutButton from "../components/SignOutBtn";
 import { useAppContext } from "../contexts/AppContext";
+import { useNavigate } from "react-router-dom";
+import TaskCard from "../components/TaskCard";
 
 export default function Profile() {
   const { isLoggedIn, showToast } = useAppContext();
 
-  const {
-    data: user = {},
-    isLoading,
-    isError,
-  } = useQuery({
+  const { data: user = {}, isLoading } = useQuery({
     queryKey: ["profile"],
     queryFn: userProfile,
     enabled: isLoggedIn,
@@ -18,6 +16,8 @@ export default function Profile() {
       showToast(error, "ERROR");
     },
   });
+
+  const navigate = useNavigate();
 
   if (!isLoggedIn) {
     return (
@@ -68,22 +68,14 @@ export default function Profile() {
           task[0] === "" ? (
             <div key={index}></div>
           ) : (
-            <div className="bg-white flex flex-col gap-4 mx-auto my-5 pt-10 pb-5 px-10 rounded-2xl max-w-screen-md">
-              <div key={index} className="task-item">
-                {task.map((value, idx) =>
-                  value === "" ? (
-                    <div key={idx}></div>
-                  ) : (
-                    <div key={idx}>
-                      <strong>{user.taskList[0][idx]}:</strong> {value}
-                    </div>
-                  )
-                )}
-              </div>
-              <button className="bg-gray-700 rounded m-auto text-white p-2 font-bold w-40">
-                Submit
-              </button>
-            </div>
+            <TaskCard
+              key={index}
+              taskCompleted={
+                user.tasksCompleted[task[0]] ? user.tasksCompleted[task[0]] : []
+              }
+              task={task}
+              headers={user.taskList[0]}
+            />
           )
         )}
     </>

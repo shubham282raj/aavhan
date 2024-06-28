@@ -30,7 +30,7 @@ export default function Navbar() {
           height: toggleMenu ? navbarRef.current.scrollHeight + "px" : "60px",
         }}
       ></div>
-      <div className="absolute z-50 top-0 left-0 w-full bg-white">
+      <div className="fixed z-50 top-0 left-0 w-full bg-white border-b-2 border-slate-800">
         <div
           className={
             "max-w-screen-xl m-auto p-3 flex flex-col sm:flex-row justify-between items-center overflow-hidden transition-[max-height] " +

@@ -66,6 +66,23 @@ export const loginUser = async (formData) => {
   }
 };
 
+export const addUserTaskURL = async (formData) => {
+  const response = await fetch(`${API_BASE_URL}/api/user/addUserTaskURL`, {
+    method: "POST",
+    credentials: "include",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(formData),
+  });
+
+  const responseBody = await response.json();
+
+  if (!response.ok) {
+    throw new Error(responseBody.message);
+  }
+};
+
 export const validateAuthToken = async () => {
   const response = await fetch(`${API_BASE_URL}/api/auth/validate-token`, {
     credentials: "include",
