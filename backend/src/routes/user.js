@@ -110,7 +110,6 @@ user.post(
         return res.status(400).send({ message: "User already exists" });
       }
 
-      req.body.isAdmin = false;
       user = new User(req.body);
       await user.save();
 
@@ -125,6 +124,58 @@ user.post(
       });
 
       res.status(200).send({ message: "User registered successfully" });
+    } catch (error) {
+      console.log(error);
+      res.status(500).send({
+        message: "Something went wrong",
+      });
+    }
+  }
+);
+
+user.post(
+  "/addUserTaskURL",
+  [
+    body("url")
+      .isString()
+      .withMessage("URL must be a string")
+      .isLength({ max: 200 })
+      .withMessage("URL must be at most 200 characters long")
+      .notEmpty()
+      .withMessage("URL is required")
+      .isURL()
+      .withMessage("URL must be of of URL type"),
+  ],
+  verifyToken,
+  async (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      const errorMessage = errors
+        .array()
+        .map((error) => `${error.msg}`)
+        .join(", ");
+      return res.status(400).send({ message: errorMessage });
+    }
+
+    try {
+      let user = await User.findById(req.userId);
+      if (!user) {
+        return res.status(400).send({ message: "User does not exist" });
+      }
+
+      if (!user.tasksCompleted) {
+        user.tasksCompleted = {};
+      }
+      if (user.tasksCompleted[req.body.taskID]) {
+        user.tasksCompleted[req.body.taskID].push(req.body.url);
+      } else {
+        user.tasksCompleted[req.body.taskID] = [req.body.url];
+      }
+
+      user.markModified("tasksCompleted");
+      await user.save();
+
+      res.status(200).send({ message: "Task URL Added Successfully" });
     } catch (error) {
       console.log(error);
       res.status(500).send({
