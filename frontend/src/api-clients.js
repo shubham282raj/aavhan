@@ -1,7 +1,7 @@
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "";
 
 export const userProfile = async () => {
-  const response = await fetch(`${API_BASE_URL}/api/user/profile`, {
+  const responsePromise = fetch(`${API_BASE_URL}/api/user/profile`, {
     method: "GET",
     credentials: "include",
     headers: {
@@ -9,11 +9,25 @@ export const userProfile = async () => {
     },
   });
 
+  const sheetsPromise = fetch(
+    "https://docs.google.com/spreadsheets/d/1XJYt561AIFlJ60Z6zxYgz7UlOZJfSRTYiLUhbMsYcXg/export?format=csv"
+  );
+
+  let [response, sheets] = await Promise.all([responsePromise, sheetsPromise]);
+
+  sheets = await sheets.text();
+  sheets = sheets
+    .replace(/\r/g, "")
+    .split("\n")
+    .map((row) => row.split(","));
+
   const responseBody = await response.json();
 
   if (!response.ok) {
     throw new Error(responseBody.message);
   }
+
+  responseBody.user.taskList = sheets;
 
   return responseBody.user;
 };
