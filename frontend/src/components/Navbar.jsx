@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 
 export default function Navbar() {
-  const isLoggedIn = true;
+  const isLoggedIn = false;
 
   const [toggleMenu, setToggleMenu] = useState(false);
 
@@ -21,7 +21,7 @@ export default function Navbar() {
     <div className="bg-gray-200 py-3 flex flex-col sm:flex-row justify-between items-center">
       <div className="flex justify-between w-full sm:w-auto">
         <span className="text-3xl font-bold tracking-tight">
-          <Link to="/">Food Booking</Link>
+          <Link to="/">Aavhan</Link>
         </span>
         <div
           className="sm:hidden text-3xl cursor-pointer"
