@@ -4,6 +4,7 @@ import { registerUser } from "../api-clients";
 import { useAppContext } from "../contexts/AppContext";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import BounceLoading from "../components/LoadingAnimations";
 
 export default function Register() {
   const { showToast } = useAppContext();
@@ -21,7 +22,7 @@ export default function Register() {
 
   const mutation = useMutation(registerUser, {
     onSuccess() {
-      navigate("/");
+      navigate("/profile");
       queryClient.invalidateQueries("validateToken");
       showToast("Registration Successfull");
     },
@@ -281,7 +282,7 @@ export default function Register() {
             className="bg-gray-700 rounded m-auto text-white p-2 font-bold w-40"
             disabled={mutation.isLoading}
           >
-            {mutation.isLoading ? "Please Wait" : "Register"}
+            {mutation.isLoading ? <BounceLoading /> : "Register"}
           </button>
         </div>
       )}

@@ -2,6 +2,7 @@ import { signOut } from "../api-clients";
 import { useNavigate } from "react-router-dom";
 import { useAppContext } from "../contexts/AppContext";
 import { useMutation, useQueryClient } from "react-query";
+import BounceLoading from "./LoadingAnimations";
 
 export default function SignOutButton() {
   const queryClient = useQueryClient();
@@ -28,7 +29,7 @@ export default function SignOutButton() {
       }}
       disabled={mutation.isLoading}
     >
-      {mutation.isLoading ? "Please Wait" : "Sign Out"}
+      {mutation.isLoading ? <BounceLoading /> : "Sign Out"}
     </button>
   );
 }

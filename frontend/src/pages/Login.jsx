@@ -3,6 +3,7 @@ import { useMutation, useQueryClient } from "react-query";
 import { loginUser } from "../api-clients";
 import { useAppContext } from "../contexts/AppContext";
 import { Link, useNavigate } from "react-router-dom";
+import BounceLoading from "../components/LoadingAnimations";
 
 export default function Login() {
   const { showToast } = useAppContext();
@@ -18,7 +19,7 @@ export default function Login() {
 
   const mutation = useMutation(loginUser, {
     onSuccess() {
-      navigate("/");
+      navigate("/profile");
       queryClient.invalidateQueries("validateToken");
       showToast("Logged In Successfully");
     },
@@ -89,7 +90,7 @@ export default function Login() {
           className="bg-gray-700 rounded m-auto text-white p-2 font-bold w-40"
           disabled={mutation.isLoading}
         >
-          {mutation.isLoading ? "Please Wait" : "Login"}
+          {mutation.isLoading ? <BounceLoading /> : "Login"}
         </button>
       </div>
     </form>

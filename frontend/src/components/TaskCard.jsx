@@ -1,8 +1,9 @@
 import { useForm } from "react-hook-form";
-import { useMutation } from "react-query";
+import { useMutation, useQueryClient } from "react-query";
 import { addUserTaskURL } from "../api-clients";
 import { Link } from "react-router-dom";
 import { useAppContext } from "../contexts/AppContext";
+import BounceLoading from "./LoadingAnimations";
 
 export default function TaskCard({ taskCompleted, task, headers }) {
   const { showToast } = useAppContext();
@@ -13,9 +14,12 @@ export default function TaskCard({ taskCompleted, task, headers }) {
     formState: { errors },
   } = useForm();
 
+  const queryClient = useQueryClient();
+
   const mutation = useMutation(addUserTaskURL, {
     onSuccess() {
       showToast("Task URL Submitted");
+      queryClient.invalidateQueries("profile");
     },
     onError(error) {
       showToast(error, "ERROR");
@@ -76,7 +80,7 @@ export default function TaskCard({ taskCompleted, task, headers }) {
           className="bg-gray-700 rounded m-auto text-white p-2 font-bold w-40"
           disabled={mutation.isLoading}
         >
-          {mutation.isLoading ? "Please Wait" : "Submit"}
+          {mutation.isLoading ? <BounceLoading /> : "Submit"}
         </button>
       </form>
     </div>

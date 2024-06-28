@@ -2,8 +2,8 @@ import { userProfile } from "../api-clients";
 import { useQuery } from "react-query";
 import SignOutButton from "../components/SignOutBtn";
 import { useAppContext } from "../contexts/AppContext";
-import { useNavigate } from "react-router-dom";
 import TaskCard from "../components/TaskCard";
+import { LoadingAnimation } from "../components/LoadingAnimations";
 
 export default function Profile() {
   const { isLoggedIn, showToast } = useAppContext();
@@ -17,8 +17,6 @@ export default function Profile() {
     },
   });
 
-  const navigate = useNavigate();
-
   if (!isLoggedIn) {
     return (
       <div className="bg-white flex flex-col gap-4 mx-auto my-10 py-10 px-20 rounded-2xl max-w-screen-md">
@@ -28,16 +26,12 @@ export default function Profile() {
   }
 
   if (isLoading) {
-    return (
-      <div className="bg-white flex flex-col gap-4 mx-auto my-10 py-10 px-20 rounded-2xl max-w-screen-md">
-        Please Wait...
-      </div>
-    );
+    return <LoadingAnimation />;
   }
 
   return (
-    <>
-      <div className=" bg-white flex flex-col gap-4 mx-auto mt-10 mb-5 py-10 px-20 rounded-2xl max-w-screen-md">
+    <div className="xl:flex gap-2">
+      <div className="xl:sticky xl:w-full xl:max-h-[60vh] bg-white flex flex-col gap-4 mx-auto mt-10 mb-5 py-10 px-20 rounded-2xl max-w-screen-md">
         <div className="text-2xl m-auto font-bold tracking-wide text-slate-800">
           Profile
         </div>
@@ -58,26 +52,30 @@ export default function Profile() {
         </div>
         <SignOutButton />
       </div>
-      <div className="block w-32 bg-white mx-auto p-2 text-center text-xl m-auto font-bold tracking-wide text-slate-800 rounded-xl">
-        Tasks
+      <div>
+        <div className="block w-32 xl:w-full bg-white mx-auto p-2 text-center text-xl m-auto mt-10 mb-5 font-bold tracking-wide text-slate-800 rounded-xl">
+          Tasks
+        </div>
+        {user.taskList
+          ?.slice(1)
+          .reverse()
+          .map((task, index) =>
+            task[0] === "" ? (
+              <div key={index}></div>
+            ) : (
+              <TaskCard
+                key={index}
+                taskCompleted={
+                  user.tasksCompleted[task[0]]
+                    ? user.tasksCompleted[task[0]]
+                    : []
+                }
+                task={task}
+                headers={user.taskList[0]}
+              />
+            )
+          )}
       </div>
-      {user.taskList
-        ?.slice(1)
-        .reverse()
-        .map((task, index) =>
-          task[0] === "" ? (
-            <div key={index}></div>
-          ) : (
-            <TaskCard
-              key={index}
-              taskCompleted={
-                user.tasksCompleted[task[0]] ? user.tasksCompleted[task[0]] : []
-              }
-              task={task}
-              headers={user.taskList[0]}
-            />
-          )
-        )}
-    </>
+    </div>
   );
 }

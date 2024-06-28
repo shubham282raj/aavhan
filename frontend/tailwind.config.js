@@ -2,7 +2,11 @@
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
-    extend: {},
+    extend: {
+      animation: {
+        "custom-bounce": "custom-bounce 1s infinite",
+      },
+    },
   },
   plugins: [],
 };
