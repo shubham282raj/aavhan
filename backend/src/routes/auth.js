@@ -3,6 +3,7 @@ import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import { body, validationResult } from "express-validator";
 import User from "../models/user.js";
+import verifyToken from "../middleware/auth.js";
 
 const auth = Router();
 
@@ -60,5 +61,9 @@ auth.post(
     }
   }
 );
+
+auth.get("/validate-token", verifyToken, (req, res) => {
+  res.status(200).send({ userId: req.userId });
+});
 
 export default auth;
