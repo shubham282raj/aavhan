@@ -27,8 +27,11 @@ export default function TaskCard({ taskCompleted, task, headers }) {
   });
 
   const onSubmit = handleSubmit((data) => {
-    data.taskID = task[0];
-    if (!mutation.isLoading) mutation.mutate(data);
+    const formData = new FormData();
+    formData.append("file", data.file[0]);
+    formData.append("taskID", task[0]);
+    formData.append("filename", data.filename);
+    if (!mutation.isLoading) mutation.mutate(formData);
   });
 
   return (
@@ -47,34 +50,39 @@ export default function TaskCard({ taskCompleted, task, headers }) {
       {taskCompleted.length > 0 && (
         <>
           <hr className="border-gray-800"></hr>
-          <div className="font-bold">Submitted task URL</div>
+          <div className="font-bold">Submitted Tasks</div>
           <div className="flex flex-col overflow-auto">
-            {taskCompleted.map((taskUrl, index) => (
+            {taskCompleted.map((task, index) => (
               <Link
                 key={index}
-                to={taskUrl}
-                className="text-blue-800 hover:underline"
+                to={task.url}
+                className="text-blue-800 underline"
               >
-                {taskUrl}
+                {task.filename}
               </Link>
             ))}
           </div>
         </>
       )}
       <hr className="border-gray-800"></hr>
-      <div className="font-bold">Submit task</div>
+      <div className="font-bold">Submit Task</div>
       <form className="flex flex-col gap-2" onSubmit={onSubmit}>
         <input
-          type="url"
-          placeholder="URL..."
+          type="text"
+          placeholder="File Name..."
           className="border border-gray-800 rounded w-full py-1 px-2 font-normal"
-          {...register("url", {
-            required: "URL is required",
+          {...register("filename", {
+            required: "File Name is required",
           })}
         ></input>
-        {errors.url && (
-          <p className="text-red-700 font-normal">{errors.url.message}</p>
+        {errors.filename && (
+          <p className="text-red-700 font-normal">{errors.filename.message}</p>
         )}
+        <input
+          type="file"
+          {...register("file")}
+          className="file:rounded-md file:bg-gray-700 file:text-white file:px-2 file:py-[2px] cursor-pointer file:cursor-pointer"
+        ></input>
         <button
           type="submit"
           className="bg-gray-700 rounded m-auto text-white p-2 font-bold w-40"

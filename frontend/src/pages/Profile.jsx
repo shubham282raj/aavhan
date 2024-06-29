@@ -66,7 +66,7 @@ export default function Profile() {
               <TaskCard
                 key={index}
                 taskCompleted={
-                  user.tasksCompleted[task[0]]
+                  user.tasksCompleted && user.tasksCompleted[task[0]]
                     ? user.tasksCompleted[task[0]]
                     : []
                 }

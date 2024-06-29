@@ -67,13 +67,10 @@ export const loginUser = async (formData) => {
 };
 
 export const addUserTaskURL = async (formData) => {
-  const response = await fetch(`${API_BASE_URL}/api/user/addUserTaskURL`, {
+  const response = await fetch(`${API_BASE_URL}/api/user/addUserTask`, {
     method: "POST",
     credentials: "include",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(formData),
+    body: formData,
   });
 
   const responseBody = await response.json();
