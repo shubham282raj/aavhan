@@ -53,13 +53,20 @@ export default function TaskCard({ taskCompleted, task, headers }) {
           <div className="font-bold">Submitted Tasks</div>
           <div className="flex flex-col overflow-auto">
             {taskCompleted.map((task, index) => (
-              <Link
+              <div
                 key={index}
-                to={task.url}
-                className="text-blue-800 underline"
+                onClick={async () => {
+                  const response = await fetch(task.url);
+                  const blob = await response.blob();
+                  const element = document.createElement("a");
+                  element.href = URL.createObjectURL(blob);
+                  element.download = task.filename;
+                  element.click();
+                }}
+                className="text-blue-800 underline cursor-pointer w-fit"
               >
                 {task.filename}
-              </Link>
+              </div>
             ))}
           </div>
         </>
