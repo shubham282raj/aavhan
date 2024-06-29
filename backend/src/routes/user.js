@@ -3,12 +3,14 @@ import { body, validationResult } from "express-validator";
 import User from "../models/user.js";
 import jwt from "jsonwebtoken";
 import verifyToken from "../middleware/auth.js";
+import { githubUpload, uploadMulter } from "../middleware/fileUpload.js";
 
 const user = Router();
 
 user.get("/profile", verifyToken, async (req, res) => {
   try {
     const user = await User.findById(req.userId).select("-password");
+
     if (!user) {
       res.cookie("auth_token", "", {
         expires: new Date(0),
@@ -134,19 +136,23 @@ user.post(
 );
 
 user.post(
-  "/addUserTaskURL",
-  [
-    body("url")
-      .isString()
-      .withMessage("URL must be a string")
-      .isLength({ max: 200 })
-      .withMessage("URL must be at most 200 characters long")
-      .notEmpty()
-      .withMessage("URL is required")
-      .isURL()
-      .withMessage("URL must be of of URL type"),
-  ],
+  "/addUserTask",
   verifyToken,
+  uploadMulter.single("file"),
+  [
+    body("taskID")
+      .isString()
+      .withMessage("taskID must be string")
+      .notEmpty()
+      .withMessage("taskID missing"),
+    body("filename")
+      .isString()
+      .withMessage("File Name must be string")
+      .notEmpty()
+      .withMessage("File Name missing")
+      .isLength({ max: 30 })
+      .withMessage("File Name must not be more than 30 characters"),
+  ],
   async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -163,13 +169,20 @@ user.post(
         return res.status(400).send({ message: "User does not exist" });
       }
 
+      const url = await githubUpload(req.file);
+
       if (!user.tasksCompleted) {
         user.tasksCompleted = {};
       }
       if (user.tasksCompleted[req.body.taskID]) {
-        user.tasksCompleted[req.body.taskID].push(req.body.url);
+        user.tasksCompleted[req.body.taskID].push({
+          filename: req.body.filename,
+          url,
+        });
       } else {
-        user.tasksCompleted[req.body.taskID] = [req.body.url];
+        user.tasksCompleted[req.body.taskID] = [
+          { filename: req.body.filename, url },
+        ];
       }
 
       user.markModified("tasksCompleted");
