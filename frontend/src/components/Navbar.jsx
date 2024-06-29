@@ -59,7 +59,7 @@ export default function Navbar() {
           </div>
           <div>
             <div
-              className={`flex flex-col justify-center items-center sm:flex sm:flex-row text-xl gap-5 mt-1`}
+              className={`flex flex-col justify-center items-center sm:flex sm:flex-row text-xl gap-5 mt-2`}
             >
               {navigationLinks.map((link, index) => {
                 return (

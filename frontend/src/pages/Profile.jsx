@@ -31,7 +31,7 @@ export default function Profile() {
 
   return (
     <div className="xl:flex gap-2">
-      <div className="xl:sticky xl:top-[70px] xl:w-full xl:max-h-[60vh] bg-white flex flex-col gap-4 mx-auto mt-10 mb-5 py-10 px-20 rounded-2xl max-w-screen-md">
+      <div className="xl:sticky xl:top-[70px] xl:w-[450px] xl:max-h-[60vh] bg-white flex flex-col gap-4 mx-auto mt-10 mb-5 py-10 px-20 rounded-2xl max-w-screen-md">
         <div className="text-2xl m-auto font-bold tracking-wide text-slate-800">
           Profile
         </div>
