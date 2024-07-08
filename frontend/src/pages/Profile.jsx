@@ -53,7 +53,7 @@ export default function Profile() {
         <SignOutButton />
       </div>
       <div>
-        <div className="xl:sticky xl:top-[70px] xl:border-b-2 xl:border-b-slate-800 block w-32 xl:w-full bg-white mx-auto p-2 text-center text-xl m-auto mt-10 mb-5 font-bold tracking-wide text-slate-800 rounded-xl">
+        <div className="xl:sticky xl:top-[70px] z-10 xl:border-b-2 xl:border-b-slate-800 block w-32 xl:w-full bg-white mx-auto p-2 text-center text-xl m-auto mt-10 mb-5 font-bold tracking-wide text-slate-800 rounded-xl">
           Tasks
         </div>
         {user.taskList
