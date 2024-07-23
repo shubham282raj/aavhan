@@ -23,6 +23,7 @@ export const githubUpload = async (file) => {
     const body = {
       message: "Added file via GitHub API",
       content: buffer.toString("base64"),
+      branch: "aavhan",
     };
 
     const response = await fetch(
@@ -48,6 +49,6 @@ export const githubUpload = async (file) => {
 
     return responseBody.content.download_url;
   } catch (error) {
-    return res.status(500).send({ message: error.message });
+    throw error;
   }
 };

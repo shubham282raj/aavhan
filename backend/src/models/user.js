@@ -14,6 +14,7 @@ const userSchema = new mongoose.Schema({
     type: Object,
     default: {},
   },
+  admin: { type: Boolean, default: false },
 });
 
 userSchema.set("toObject", { virtuals: true });

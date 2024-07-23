@@ -4,8 +4,80 @@ import User from "../models/user.js";
 import jwt from "jsonwebtoken";
 import verifyToken from "../middleware/auth.js";
 import { githubUpload, uploadMulter } from "../middleware/fileUpload.js";
+import { optStorage } from "./mail.js";
 
 const user = Router();
+
+user.get("/admin/all-users", verifyToken, async (req, res) => {
+  try {
+    const user = await User.findById(req.userId).select("-password");
+    if (!user) {
+      res.cookie("auth_token", "", {
+        expires: new Date(0),
+      });
+      return res.status(404).send({ message: "Forced Logout: User Not Found" });
+    }
+
+    if (user.admin != true) {
+      return res
+        .status(404)
+        .send({ message: "You might not have permissions to this route" });
+    }
+
+    const users = await User.find({}).select("-password");
+
+    return res.status(200).send(users);
+  } catch (error) {
+    console.log(error);
+    return res.status(500).send({
+      message: "Something went wrong",
+    });
+  }
+});
+
+user.post("/admin/verify-task", verifyToken, async (req, res) => {
+  try {
+    const user = await User.findById(req.userId).select("-password");
+    if (!user) {
+      res.cookie("auth_token", "", {
+        expires: new Date(0),
+      });
+      return res.status(404).send({ message: "Forced Logout: User Not Found" });
+    }
+
+    if (user.admin != true) {
+      return res
+        .status(404)
+        .send({ message: "You might not have permissions to this route" });
+    }
+
+    const caUser = await User.findById(req.body.caID);
+
+    if (!caUser) {
+      return res.status(404).send({ message: "CA not found" });
+    }
+
+    const task = caUser.tasksCompleted[req.body.taskID].find(
+      (task) => task.url === req.body.taskURL
+    );
+    if (!task) {
+      return res.status(404).send({ message: "Task URL not found" });
+    }
+    task.verified = req.body.status;
+
+    caUser.markModified(`tasksCompleted.${req.body.taskID}`);
+    await caUser.save();
+
+    console.log(caUser.tasksCompleted);
+
+    res.status(200).send({ message: "Update Success" });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).send({
+      message: "Something went wrong",
+    });
+  }
+});
 
 user.get("/profile", verifyToken, async (req, res) => {
   try {
@@ -179,6 +251,7 @@ user.post(
         user.tasksCompleted[req.body.taskID].push({
           filename: req.body.filename,
           url,
+          verified: "Pending",
         });
       } else {
         user.tasksCompleted[req.body.taskID] = [
