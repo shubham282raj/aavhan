@@ -44,9 +44,14 @@ export default function TaskCard({ taskCompleted, task, headers }) {
           setShowSub((val) => !val);
         }}
       >
-        {taskCompleted.length > 0 && (
-          <div className="p-2 w-fit rounded-full bg-green-500 absolute -left-5 top-1"></div>
-        )}
+        {taskCompleted.length > 0 &&
+          (Object.keys(taskCompleted).some(
+            (key) => taskCompleted[key].verified === "Pending"
+          ) ? (
+            <div className="p-2 w-fit rounded-full bg-orange-500 absolute -left-5 top-1"></div>
+          ) : (
+            <div className="p-2 w-fit rounded-full bg-green-500 absolute -left-5 top-1"></div>
+          ))}
         {task.map((value, idx) =>
           value === "" || headers[idx] === "" ? (
             <div key={idx}></div>
@@ -65,19 +70,38 @@ export default function TaskCard({ taskCompleted, task, headers }) {
               <div className="font-bold">Submitted Tasks</div>
               <div className="flex flex-col overflow-auto">
                 {taskCompleted.map((task, index) => (
-                  <div
-                    key={index}
-                    onClick={async () => {
-                      const response = await fetch(task.url);
-                      const blob = await response.blob();
-                      const element = document.createElement("a");
-                      element.href = URL.createObjectURL(blob);
-                      element.download = task.filename;
-                      element.click();
-                    }}
-                    className="text-blue-800 underline cursor-pointer w-fit"
-                  >
-                    {task.filename}
+                  <div className="flex justify-between">
+                    <div
+                      key={index}
+                      onClick={async () => {
+                        const response = await fetch(task.url);
+                        const blob = await response.blob();
+                        const element = document.createElement("a");
+                        element.href = URL.createObjectURL(blob);
+                        element.download = task.filename;
+                        element.click();
+                      }}
+                      className="text-blue-800 underline cursor-pointer w-fit"
+                    >
+                      {task.filename}
+                    </div>
+                    <div
+                      className="px-1 border rounded text-white font-bold"
+                      style={{
+                        backgroundColor:
+                          task.verified == "Verified"
+                            ? "Green"
+                            : task.verified == "Rejected"
+                            ? "Red"
+                            : "Orange",
+                      }}
+                    >
+                      {task.verified == "Verified"
+                        ? "Verified"
+                        : task.verified == "Rejected"
+                        ? "Rejected"
+                        : "Pending"}
+                    </div>
                   </div>
                 ))}
               </div>
