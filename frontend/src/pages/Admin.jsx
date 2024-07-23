@@ -26,7 +26,7 @@ function UserCard({ user, tasks }) {
     <>
       <div className="m-auto bg-white max-w-screen-md w-full rounded-lg p-3 flex flex-col">
         <div
-          className=""
+          className="cursor-pointer"
           onClick={() => {
             setShow((val) => !val);
           }}
@@ -40,11 +40,12 @@ function UserCard({ user, tasks }) {
               <strong>{field.label}:</strong> {user[field.name]}
             </p>
           ))}
-          {Object.keys(user.tasksCompleted).some((key) =>
-            user.tasksCompleted[key].some(
-              (upload) => upload.verified === "Pending"
-            )
-          ) &&
+          {user.tasksCompleted &&
+            Object.keys(user.tasksCompleted).some((key) =>
+              user.tasksCompleted[key].some(
+                (upload) => upload.verified === "Pending"
+              )
+            ) &&
             !show && (
               <div
                 className="rounded-lg w-fit px-2 py-1"
@@ -60,6 +61,7 @@ function UserCard({ user, tasks }) {
               onClick={() => {
                 setShow((val) => !val);
               }}
+              className="cursor-pointer"
             >
               {[
                 { label: "Course Pursuing", name: "coursePursuing" },
@@ -95,7 +97,7 @@ function UserCard({ user, tasks }) {
                         <div className="flex flex-col overflow-auto">
                           {user.tasksCompleted[task[0]].map(
                             (userTask, index) => (
-                              <div className="flex justify-between">
+                              <div className="flex flex-wrap justify-between">
                                 <div
                                   key={index}
                                   onClick={async () => {
@@ -122,7 +124,7 @@ function UserCard({ user, tasks }) {
                                             status: status,
                                           });
                                         }}
-                                        className="border rounded px-2 my-1 text-black"
+                                        className="border rounded px-2 py-1 my-1 text-black"
                                         style={{
                                           backgroundColor:
                                             status == userTask.verified

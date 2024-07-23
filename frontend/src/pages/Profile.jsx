@@ -50,6 +50,14 @@ export default function Profile() {
           ))}
         </div>
         <SignOutButton />
+        {user.admin && (
+          <a
+            href="/admin"
+            className="bg-gray-700 rounded m-auto text-center text-white p-2 font-bold w-48"
+          >
+            Go to Admin Page
+          </a>
+        )}
       </div>
     </div>
   );

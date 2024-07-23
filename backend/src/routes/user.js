@@ -255,7 +255,7 @@ user.post(
         });
       } else {
         user.tasksCompleted[req.body.taskID] = [
-          { filename: req.body.filename, url },
+          { filename: req.body.filename, url, verified: "Pending" },
         ];
       }
 
