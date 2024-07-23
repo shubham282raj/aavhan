@@ -37,7 +37,7 @@ export default function TaskCard({ taskCompleted, task, headers }) {
   });
 
   return (
-    <div className="bg-white flex flex-col gap-2 mx-auto my-5 pt-10 pb-10 px-10 rounded-2xl max-w-screen-md cursor-pointer">
+    <div className="bg-white flex flex-col gap-2 mx-auto my-2 py-7 px-10 rounded-2xl max-w-screen-md cursor-pointer">
       <div
         className="task-item relative"
         onClick={() => {
