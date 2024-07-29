@@ -54,6 +54,7 @@ export const getLeaderboard = async () => {
     `https://raw.githubusercontent.com/temp-waterbottle/database/aavhan/leaderboard/leaderboard.json`,
     {
       method: "GET",
+      cache: "no-cache",
     }
   );
 
