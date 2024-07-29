@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form";
 import { useMutation, useQueryClient } from "react-query";
-import { registerUser } from "../api-clients";
+import { getOtp, registerUser } from "../api-clients";
 import { useAppContext } from "../contexts/AppContext";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
@@ -31,8 +31,29 @@ export default function Register() {
     },
   });
 
+  let otpTimeout;
+  const [otpSent, setOtpSent] = useState(false);
+  const otpMutation = useMutation(getOtp, {
+    onSuccess() {
+      showToast("OTP sent to email");
+      setOtpSent(true);
+      clearTimeout(otpTimeout);
+      otpTimeout = setTimeout(() => {
+        setOtpSent(false);
+        showToast("OTP Expired", "ERROR");
+      }, 5 * 60 * 1000);
+    },
+    onError(error) {
+      showToast(error, "ERROR");
+    },
+  });
+
   const onSubmit = handleSubmit((data) => {
-    if (!mutation.isLoading) mutation.mutate(data);
+    if (!otpSent) {
+      if (!otpMutation.isLoading) otpMutation.mutate(data);
+    } else {
+      if (!mutation.isLoading) mutation.mutate(data);
+    }
   });
 
   const [isPreview, setIsPreview] = useState(false);
@@ -47,7 +68,11 @@ export default function Register() {
           <button
             type="button"
             className=" absolute inline-block bg-white rounded-full w-10 aspect-square"
-            onClick={() => setIsPreview((val) => !val)}
+            onClick={() => {
+              setIsPreview((val) => !val);
+              setOtpSent(false);
+              clearTimeout(otpTimeout);
+            }}
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -255,6 +280,8 @@ export default function Register() {
             onClick={async () => {
               const result = await trigger();
               result && setIsPreview((value) => !value);
+              clearTimeout(otpTimeout);
+              setOtpSent(false);
             }}
           >
             Next
@@ -277,13 +304,60 @@ export default function Register() {
               </p>
             ))}
           </div>
-          <button
-            type="submit"
-            className="bg-gray-700 rounded m-auto text-white p-2 font-bold w-40"
-            disabled={mutation.isLoading}
-          >
-            {mutation.isLoading ? <BounceLoading /> : "Register"}
-          </button>
+
+          {!otpSent && (
+            <button
+              type="submit"
+              className="bg-gray-700 rounded m-auto text-white p-2 font-bold w-40"
+              disabled={otpMutation.isLoading}
+            >
+              {otpMutation.isLoading ? <BounceLoading /> : "Get OTP"}
+            </button>
+          )}
+
+          {otpSent && (
+            <>
+              <hr></hr>
+              <label className="m-auto text-gray-700 text-base font-bold flex-1">
+                OTP
+                <input
+                  className="border rounded w-20 py-1 px-2 ml-4 font-normal"
+                  type="number"
+                  {...register("otp", {
+                    required: {
+                      value: otpSent,
+                      message: "OTP is required",
+                    },
+                    validate: (value) => {
+                      if (!otpSent) {
+                        return true;
+                      }
+                      const stringValue = value.toString();
+                      return (
+                        stringValue.length === 6 ||
+                        "OTP must be exactly 6 digits"
+                      );
+                    },
+                  })}
+                ></input>
+                {errors.otp && (
+                  <p className="text-red-700 font-normal">
+                    {errors.otp.message}
+                  </p>
+                )}
+              </label>
+              <div className="m-auto">
+                Next OTP can be generated after 5 mins
+              </div>
+              <button
+                type="submit"
+                className="bg-gray-700 rounded m-auto text-white p-2 font-bold w-40"
+                disabled={mutation.isLoading}
+              >
+                {mutation.isLoading ? <BounceLoading /> : "Register"}
+              </button>
+            </>
+          )}
         </div>
       )}
     </form>
