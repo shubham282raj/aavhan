@@ -1,22 +1,37 @@
 import { Router } from "express";
 import nodemailer from "nodemailer";
 import { body, validationResult } from "express-validator";
+import crypto from "crypto";
 
-const mail = Router();
+export const mail = Router();
 
 function generateOTP() {
-  return crypto.randomInt(100000, 999999).toString();
+  return crypto.randomInt(100000, 999999);
 }
 
 const transporter = nodemailer.createTransport({
   service: "gmail",
+  host: "smtp.gmail.com",
+  port: 587,
+  secure: false,
   auth: {
     user: process.env.MAILING_USER,
-    pass: process.env.MAILING_USER,
+    pass: process.env.MAILING_PASS,
   },
 });
 
 export const optStorage = {};
+
+export const verifyOTP = (email, otp) => {
+  if (
+    optStorage[email] &&
+    optStorage[email].otp == Number(otp) &&
+    Date.now() <= optStorage[email].expirationTime
+  ) {
+    return true;
+  }
+  return false;
+};
 
 mail.post(
   "/getOtp",
@@ -86,35 +101,44 @@ mail.post(
       .withMessage("Password is required"),
   ],
   async (req, res) => {
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-      const errorMessage = errors
-        .array()
-        .map((error) => `${error.msg}`)
-        .join(", ");
-      return res.status(400).send({ message: errorMessage });
-    }
-
-    const otp = generateOTP();
-    const expirationTime = Date.now() + 5 * 60 * 1000; // OTP valid for 5 minutes
-    optStorage[req.body.email] = { otp, expirationTime };
-    setTimeout(() => {
-      delete optStorage[req.body.email];
-      console.log(`OTP for ${email} has been deleted due to expiration.`);
-    }, 5 * 60 * 1000);
-
-    const mailOptions = {
-      from: process.env.MAILING_USER,
-      to: req.body.email,
-      subject: "Your OTP Code",
-      text: `Your OTP code is ${otp}`,
-    };
-
     try {
-      const info = await transporter.sendMail(mailOptions);
-      console.log("Email sent: " + info.response);
+      const errors = validationResult(req);
+      if (!errors.isEmpty()) {
+        const errorMessage = errors
+          .array()
+          .map((error) => `${error.msg}`)
+          .join(", ");
+        return res.status(400).send({ message: errorMessage });
+      }
+
+      const otp = generateOTP();
+      const expirationTime = Date.now() + 5 * 60 * 1000; // OTP valid for 5 minutes
+      optStorage[req.body.email] = { otp, expirationTime };
+      setTimeout(() => {
+        delete optStorage[req.body.email];
+        console.log(
+          `OTP for ${req.body.email} has been deleted due to expiration.`
+        );
+      }, 5 * 60 * 1000);
+
+      const mailOptions = {
+        from: {
+          name: "Team Aavhan",
+          address: process.env.MAILING_USER,
+        },
+        to: req.body.email,
+        subject: "OTP for Aavhan Registration",
+        text: `Your OTP code is ${otp}`,
+      };
+
+      await transporter.sendMail(mailOptions);
+
+      return res.status(200).send({ message: "OTP send success" });
     } catch (error) {
       console.error("Error sending email: ", error);
+      return res.status(500).send({
+        message: "Something went wrong",
+      });
     }
   }
 );

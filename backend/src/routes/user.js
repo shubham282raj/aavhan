@@ -4,7 +4,7 @@ import User from "../models/user.js";
 import jwt from "jsonwebtoken";
 import verifyToken from "../middleware/auth.js";
 import { githubUpload, uploadMulter } from "../middleware/fileUpload.js";
-import { optStorage } from "./mail.js";
+import { optStorage, verifyOTP } from "./mail.js";
 import { updateLeaderboard } from "../middleware/leaderboard.js";
 
 const user = Router();
@@ -195,6 +195,14 @@ user.post(
       .withMessage("Password must be between 8 and 16 characters long")
       .notEmpty()
       .withMessage("Password is required"),
+
+    body("otp")
+      .isString()
+      .withMessage("OTP must be a string")
+      .isLength({ min: 6, max: 6 })
+      .withMessage("Wrong OTP")
+      .notEmpty()
+      .withMessage("OTP is required"),
   ],
   async (req, res) => {
     const errors = validationResult(req);
@@ -207,14 +215,24 @@ user.post(
     }
 
     try {
-      let user = await User.findOne({
+      const userCheckEmail = await User.findOne({
         email: req.body.email,
       });
-      if (user) {
-        return res.status(400).send({ message: "User already exists" });
+      if (userCheckEmail) {
+        return res.status(400).send({ message: "Email already exists" });
+      }
+      const userCheckNumber = await User.findOne({
+        phoneNumber: req.body.phoneNumber,
+      });
+      if (userCheckNumber) {
+        return res.status(400).send({ message: "Phone Number already exists" });
       }
 
-      user = new User(req.body);
+      if (!verifyOTP(req.body.email, req.body.otp)) {
+        return res.status(400).send({ message: "OTP verification failed" });
+      }
+
+      const user = new User(req.body);
       await user.save();
 
       const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET_KEY, {
