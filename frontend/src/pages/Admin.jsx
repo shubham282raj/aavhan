@@ -84,7 +84,8 @@ function UserCard({ user, tasks }) {
                 ) : (
                   <div>
                     {user.tasksCompleted && user.tasksCompleted[task[0]] && (
-                      <div className="border border-black p-2 mx-5 my-1">
+                      <div className="px-2">
+                        <hr className="border-black my-1"></hr>
                         {task.map((value, idx) =>
                           value === "" || tasks[0][idx] === "" ? (
                             <div key={idx}></div>
