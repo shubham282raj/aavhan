@@ -1,5 +1,5 @@
-import { userProfile } from "../api-clients";
-import { useQuery } from "react-query";
+import { refreshLeaderboard, userProfile } from "../api-clients";
+import { useMutation, useQuery } from "react-query";
 import SignOutButton from "../components/SignOutBtn";
 import { useAppContext } from "../contexts/AppContext";
 import { LoadingAnimation } from "../components/LoadingAnimations";
@@ -11,6 +11,17 @@ export default function Profile() {
     queryKey: ["profile"],
     queryFn: userProfile,
     enabled: isLoggedIn,
+    onError(error) {
+      showToast(error, "ERROR");
+    },
+  });
+
+  const mutation = useMutation({
+    mutationKey: ["refreshLeaderboard"],
+    mutationFn: refreshLeaderboard,
+    onSuccess() {
+      showToast("Leaderboard Refresh Success");
+    },
     onError(error) {
       showToast(error, "ERROR");
     },
@@ -30,7 +41,7 @@ export default function Profile() {
 
   return (
     <div className="xl:flex gap-2">
-      <div className="xl:sticky xl:top-[70px] w-full xl:max-h-[60vh] bg-white flex flex-col gap-4 mx-auto mt-10 mb-5 py-10 px-20 rounded-2xl max-w-screen-md">
+      <div className="xl:sticky xl:top-[70px] w-full bg-white flex flex-col gap-4 mx-auto mt-10 mb-5 py-10 px-20 rounded-2xl max-w-screen-md">
         <div className="text-2xl m-auto font-bold tracking-wide text-slate-800">
           Profile
         </div>
@@ -57,6 +68,16 @@ export default function Profile() {
           >
             Go to Admin Page
           </a>
+        )}
+        {user.admin && (
+          <button
+            onClick={() => {
+              mutation.mutate();
+            }}
+            className="bg-gray-700 rounded m-auto text-center text-white p-2 font-bold w-48"
+          >
+            {mutation.isLoading ? "Please Wait..." : "Refresh Leaderboard"}
+          </button>
         )}
       </div>
     </div>

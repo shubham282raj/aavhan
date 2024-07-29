@@ -30,6 +30,42 @@ export const allUsers = async () => {
   return { users: responseBody, tasks: sheets };
 };
 
+export const refreshLeaderboard = async () => {
+  const response = await fetch(
+    `${API_BASE_URL}/api/user/admin/refreshLeaderboard`,
+    {
+      method: "GET",
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }
+  );
+
+  const responseBody = await response.json();
+
+  if (!response.ok) {
+    throw new Error(responseBody.message);
+  }
+};
+
+export const getLeaderboard = async () => {
+  const response = await fetch(
+    `https://raw.githubusercontent.com/temp-waterbottle/database/aavhan/leaderboard/leaderboard.json`,
+    {
+      method: "GET",
+    }
+  );
+
+  const responseBody = await response.json();
+
+  if (!response.ok) {
+    throw new Error(responseBody.message);
+  }
+  console.log(responseBody);
+  return responseBody;
+};
+
 export const verifyTask = async (formData) => {
   const response = await fetch(`${API_BASE_URL}/api/user/admin/verify-task`, {
     method: "POST",
