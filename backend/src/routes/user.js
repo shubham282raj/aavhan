@@ -5,6 +5,7 @@ import jwt from "jsonwebtoken";
 import verifyToken from "../middleware/auth.js";
 import { githubUpload, uploadMulter } from "../middleware/fileUpload.js";
 import { optStorage } from "./mail.js";
+import { updateLeaderboard } from "../middleware/leaderboard.js";
 
 const user = Router();
 
@@ -27,6 +28,35 @@ user.get("/admin/all-users", verifyToken, async (req, res) => {
     const users = await User.find({}).select("-password");
 
     return res.status(200).send(users);
+  } catch (error) {
+    console.log(error);
+    return res.status(500).send({
+      message: "Something went wrong",
+    });
+  }
+});
+
+user.get("/admin/refreshLeaderboard", verifyToken, async (req, res) => {
+  try {
+    const user = await User.findById(req.userId).select("-password");
+    if (!user) {
+      res.cookie("auth_token", "", {
+        expires: new Date(0),
+      });
+      return res.status(404).send({ message: "Forced Logout: User Not Found" });
+    }
+
+    if (user.admin != true) {
+      return res
+        .status(404)
+        .send({ message: "You might not have permissions to this route" });
+    }
+
+    await updateLeaderboard();
+
+    return res
+      .status(200)
+      .send({ message: "Leaderboard Updated Successfully" });
   } catch (error) {
     console.log(error);
     return res.status(500).send({
@@ -242,7 +272,11 @@ user.post(
         return res.status(400).send({ message: "User does not exist" });
       }
 
-      const url = await githubUpload(req.file);
+      const url = await githubUpload(
+        req.file.filename,
+        req.file.path,
+        `users/${user._id}/task-${req.body.taskID}`
+      );
 
       if (!user.tasksCompleted) {
         user.tasksCompleted = {};
