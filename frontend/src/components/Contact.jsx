@@ -20,11 +20,11 @@ export default function Contact() {
         <div className="text-white text-4xl font-bold text-center pb-3">
           Contact Us
         </div>
-        <div className="flex flex-wrap justify-evenly gap-4">
+        <div className="flex flex-wrap justify-evenly gap-4 text-white">
           {contacts.map((contact) => (
-            <div className="bg-white p-5 rounded-lg w-full sm:max-w-[280px] flex sm:flex-col">
+            <div className="bg-white bg-opacity-20 p-5 rounded-lg w-full sm:max-w-[280px] flex sm:flex-col">
               <img
-                className="border-2 border-slate-800 rounded-full w-1/2 sm:w-full aspect-square"
+                className="border-2 rounded-full w-1/2 sm:w-full aspect-square"
                 src={contact.img}
                 alt="Contact Img"
               />
@@ -33,7 +33,7 @@ export default function Contact() {
                 <div>{contact.post}</div>
                 <a
                   href={`tel:${contact.phone}}`}
-                  className="border border-gray-500 rounded-md p-1 text-black"
+                  className="border border-gray-500 rounded-md p-1"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -43,7 +43,7 @@ export default function Contact() {
                     className="inline -translate-y-[0.14rem]"
                   >
                     <path
-                      fill="black"
+                      fill="white"
                       d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.1-.27c1.2.5 2.5.78 3.9.78a1 1 0 011 1v3.5a1 1 0 01-1 1C8.61 21 3 15.39 3 8a1 1 0 011-1h3.5a1 1 0 011 1c0 1.4.28 2.7.78 3.9a1 1 0 01-.27 1.09l-2.2 2.2z"
                     />
                   </svg>

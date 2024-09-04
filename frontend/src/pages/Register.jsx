@@ -60,14 +60,14 @@ export default function Register() {
 
   return (
     <form
-      className=" bg-white flex flex-col gap-4 mx-auto my-10 p-10 rounded-2xl max-w-screen-md"
+      className=" bg-white text-white bg-opacity-20 flex flex-col gap-4 mx-auto my-10 py-10 px-6 sm:px-10 rounded-2xl max-w-screen-md"
       onSubmit={onSubmit}
     >
       <div className="flex  items-center relative">
         {isPreview && (
           <button
             type="button"
-            className=" absolute inline-block bg-white rounded-full w-10 aspect-square"
+            className=" absolute inline-block rounded-full w-10 aspect-square"
             onClick={() => {
               setIsPreview((val) => !val);
               setOtpSent(false);
@@ -86,16 +86,16 @@ export default function Register() {
             </svg>
           </button>
         )}
-        <h2 className="text-2xl font-bold text-slate-800 m-auto px-10">
+        <h2 className="text-2xl font-bold m-auto px-10">
           {!isPreview ? "Registration Form" : "Registration Preview"}
         </h2>
       </div>
       {!isPreview ? (
         <div className="flex flex-col gap-2">
-          <label className="text-gray-700 text-base font-bold flex-1">
+          <label className="text-base font-bold flex-1">
             Name
             <input
-              className="border rounded w-full py-1 px-2 font-normal"
+              className="rounded w-full py-1 px-2 font-normal"
               {...register("name", {
                 required: "Name is required",
                 maxLength: {
@@ -108,10 +108,10 @@ export default function Register() {
               <p className="text-red-700 font-normal">{errors.name.message}</p>
             )}
           </label>
-          <label className="text-gray-700 text-base font-bold flex-1">
+          <label className="text-base font-bold flex-1">
             College
             <input
-              className="border rounded w-full py-1 px-2 font-normal"
+              className="rounded w-full py-1 px-2 font-normal"
               {...register("college", {
                 required: "College is required",
                 maxLength: {
@@ -126,10 +126,10 @@ export default function Register() {
               </p>
             )}
           </label>
-          <label className="text-gray-700 text-base font-bold flex-1">
+          <label className="text-base font-bold flex-1">
             Course Pursuing
             <input
-              className="border rounded w-full py-1 px-2 font-normal"
+              className="rounded w-full py-1 px-2 font-normal"
               {...register("coursePursuing", {
                 required: "Course Pursuing is required",
                 maxLength: {
@@ -144,7 +144,7 @@ export default function Register() {
               </p>
             )}
           </label>
-          <label className="text-gray-700 text-base font-bold flex-1">
+          <label className="text-base font-bold flex-1">
             Year of Study
             <div className="flex flex-col space-y-1 sm:flex-row sm:justify-evenly">
               {["1st year", "2nd year", "3rd year", "4th year", "5th year"].map(
@@ -169,10 +169,10 @@ export default function Register() {
               </p>
             )}
           </label>
-          <label className="text-gray-700 text-base font-bold flex-1">
+          <label className="text-base font-bold flex-1">
             Email
             <input
-              className="border rounded w-full py-1 px-2 font-normal"
+              className="rounded w-full py-1 px-2 font-normal"
               type="email"
               {...register("email", {
                 required: " Email is required",
@@ -186,10 +186,10 @@ export default function Register() {
               <p className="text-red-700 font-normal">{errors.email.message}</p>
             )}
           </label>
-          <label className="text-gray-700 text-base font-bold flex-1">
+          <label className="text-base font-bold flex-1">
             Phone Number
             <input
-              className="border rounded w-full py-1 px-2 font-normal"
+              className="rounded w-full py-1 px-2 font-normal"
               type="number"
               {...register("phoneNumber", {
                 required: " Phone Number is required",
@@ -208,10 +208,10 @@ export default function Register() {
               </p>
             )}
           </label>
-          <label className="text-gray-700 text-base font-bold flex-1">
+          <label className="text-base font-bold flex-1">
             Address
             <textarea
-              className="border rounded w-full py-1 px-2 font-normal"
+              className="rounded w-full py-1 px-2 font-normal"
               {...register("address", {
                 required: " Address is required",
                 validate: (value) => {
@@ -229,10 +229,10 @@ export default function Register() {
               </p>
             )}
           </label>
-          <label className="text-gray-700 text-base font-bold flex-1">
+          <label className="text-base font-bold flex-1">
             Password
             <input
-              className="border rounded w-full py-1 px-2 font-normal"
+              className="rounded w-full py-1 px-2 font-normal"
               type="password"
               {...register("password", {
                 required: "Password is Required",
@@ -252,10 +252,10 @@ export default function Register() {
               </p>
             )}
           </label>
-          <label className="text-gray-700 text-base font-bold flex-1">
+          <label className="text-base font-bold flex-1">
             Confirm Password
             <input
-              className="border rounded w-full py-1 px-2 font-normal"
+              className="rounded w-full py-1 px-2 font-normal"
               type="password"
               {...register("confirmPassword", {
                 validate: (val) => {
@@ -276,7 +276,7 @@ export default function Register() {
             )}
           </label>
           <button
-            className="bg-gray-700 rounded m-auto text-white p-2 font-bold w-40"
+            className="bg-black bg-opacity-40 rounded m-auto text-white p-2 font-bold w-40"
             onClick={async () => {
               const result = await trigger();
               result && setIsPreview((value) => !value);
@@ -308,7 +308,7 @@ export default function Register() {
           {!otpSent && (
             <button
               type="submit"
-              className="bg-gray-700 rounded m-auto text-white p-2 font-bold w-40"
+              className="bg-black bg-opacity-40 rounded m-auto text-white p-2 font-bold w-40"
               disabled={otpMutation.isLoading}
             >
               {otpMutation.isLoading ? <BounceLoading /> : "Get OTP"}
@@ -318,10 +318,10 @@ export default function Register() {
           {otpSent && (
             <>
               <hr></hr>
-              <label className="m-auto text-gray-700 text-base font-bold flex-1">
+              <label className="m-auto text-base font-bold flex-1">
                 OTP
                 <input
-                  className="border rounded w-20 py-1 px-2 ml-4 font-normal"
+                  className="rounded w-20 py-1 px-2 ml-4 font-normal"
                   type="number"
                   {...register("otp", {
                     required: {
@@ -351,7 +351,7 @@ export default function Register() {
               </div>
               <button
                 type="submit"
-                className="bg-gray-700 rounded m-auto text-white p-2 font-bold w-40"
+                className="bg-black bg-opacity-40 rounded m-auto text-white p-2 font-bold w-40"
                 disabled={mutation.isLoading}
               >
                 {mutation.isLoading ? <BounceLoading /> : "Register"}

@@ -34,15 +34,15 @@ export default function Login() {
 
   return (
     <form
-      className=" bg-white flex flex-col gap-4 mx-auto my-10 p-10 rounded-2xl max-w-screen-md"
+      className=" bg-white text-white bg-opacity-20 flex flex-col gap-4 mx-auto my-10 p-10 rounded-2xl max-w-screen-md"
       onSubmit={onSubmit}
     >
-      <h2 className="text-2xl font-bold text-slate-800">Welcome Back</h2>
+      <h2 className="text-2xl font-bold">Welcome Back</h2>
       <div className="flex flex-col gap-4">
-        <label className="text-gray-700 text-base font-bold flex-1">
+        <label className="text-base font-bold flex-1">
           Email
           <input
-            className="border rounded w-full py-1 px-2 font-normal"
+            className="rounded w-full py-1 px-2 font-normal"
             type="email"
             {...register("email", {
               required: " Email is required",
@@ -56,10 +56,10 @@ export default function Login() {
             <p className="text-red-700 font-normal">{errors.email.message}</p>
           )}
         </label>
-        <label className="text-gray-700 text-base font-bold flex-1">
+        <label className="text-base font-bold flex-1">
           Password
           <input
-            className="border rounded w-full py-1 px-2 font-normal"
+            className="rounded w-full py-1 px-2 font-normal"
             type="password"
             {...register("password", {
               required: "Password is Required",

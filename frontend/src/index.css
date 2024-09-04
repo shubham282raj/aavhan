@@ -32,3 +32,9 @@
   background-repeat: no-repeat; /* Prevents repeating of the gradient */
   background-clip: border-box; /* Clips the gradient to the div's border box */
 }
+
+input,
+textarea {
+  background-color: rgba(0, 0, 0, 0.16);
+  outline: none;
+}
