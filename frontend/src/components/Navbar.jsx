@@ -45,7 +45,7 @@ export default function Navbar() {
               </Link>
             </span>
             <div
-              className="sm:hidden text-3xl cursor-pointer h-7 flex flex-col justify-center items-center w-9 relative"
+              className="sm:hidden text-3xl cursor-pointer h-8 flex flex-col justify-center items-center w-8 relative "
               onClick={() => setToggleMenu(!toggleMenu)}
             >
               <div
@@ -53,7 +53,7 @@ export default function Navbar() {
                 style={{
                   transform: toggleMenu
                     ? "rotate(-45deg)"
-                    : "translate(0, -12px)",
+                    : "translate(0, -10px)",
                   transition: "all 0.3s ease",
                 }}
               ></div>
@@ -69,7 +69,7 @@ export default function Navbar() {
                 style={{
                   transform: toggleMenu
                     ? "rotate(45deg)"
-                    : "translate(0, 12px)",
+                    : "translate(0, 10px)",
                   transition: "all 0.3s ease",
                 }}
               ></div>

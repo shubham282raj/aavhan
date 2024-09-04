@@ -26,11 +26,9 @@ export default function Incentives() {
       </div>
       <div className="text-white text-center flex flex-col sm:flex-row sm:flex-wrap sm:justify-center gap-3">
         {incentives.map((incentive) => (
-          <div className="bg-white rounded-lg px-8 py-5 sm:w-[46%]">
-            <div className="text-slate-800 text-xl font-bold">
-              {incentive[0]}
-            </div>
-            <div className="text-black">{incentive[1]}</div>
+          <div className="bg-white bg-opacity-20 rounded-lg px-8 py-5 sm:w-[46%]">
+            <div className="text-xl font-bold">{incentive[0]}</div>
+            <div className="">{incentive[1]}</div>
           </div>
         ))}
       </div>

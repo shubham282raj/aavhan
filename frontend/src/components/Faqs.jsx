@@ -4,19 +4,19 @@ function Faq({ faq }) {
   const [open, setOpen] = useState(false);
   return (
     <div
-      className="bg-white rounded-lg px-8 py-5 select-none cursor-pointer"
+      className="bg-white bg-opacity-20 rounded-lg px-5 sm:px-8 py-5 select-none cursor-pointer text-white"
       onClick={() => setOpen((val) => !val)}
     >
-      <div className="text-slate-800 text-base font-bold flex flex-row justify-between">
+      <div className="text-base font-bold flex flex-row justify-between relative">
         <span>{faq.question}</span>
         <span
-          className="transition-all"
+          className="transition-all absolute right-0"
           style={{ transform: open ? "rotate(0deg)" : "rotate(180deg)" }}
         >
           ^
         </span>
       </div>
-      {open && <div className="text-black">{faq.answer}</div>}
+      {open && <div className="mt-2">{faq.answer}</div>}
     </div>
   );
 }

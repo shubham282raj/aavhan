@@ -37,7 +37,7 @@ export default function AboutSection() {
 
   return (
     <div>
-      <div className="m-auto flex flex-col gap-5">
+      <div className="m-auto flex flex-col gap-10">
         {sections.map((section) => (
           <div>
             <div className="text-white text-4xl font-bold text-center pb-2">
