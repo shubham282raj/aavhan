@@ -2,7 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
+
 * {
+  /* font-family: "Reem Kufi" !important; */
   box-sizing: border-box;
   padding: 0;
   margin: 0;
@@ -19,4 +22,16 @@
     transform: translateY(25%);
     animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
   }
+}
+
+.background {
+  background: linear-gradient(45deg, rgb(0, 23, 49), rgb(32, 92, 102));
+  background-repeat: space;
+}
+
+.navbar-bg {
+  background: linear-gradient(45deg, rgb(0, 23, 49), rgb(32, 92, 102));
+  background-size: 100vw 100vh; /* Ensures the gradient covers the full size of the div */
+  background-repeat: no-repeat; /* Prevents repeating of the gradient */
+  background-clip: border-box; /* Clips the gradient to the div's border box */
 }

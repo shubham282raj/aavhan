@@ -32,7 +32,7 @@ export default function Navbar() {
           height: toggleMenu ? navbarRef.current.scrollHeight + "px" : "60px",
         }}
       ></div>
-      <div className="fixed z-50 top-0 left-0 w-full bg-white border-b-2 border-slate-800">
+      <div className="fixed z-50 top-0 left-0 w-full navbar-bg text-white font-bold">
         <div
           className={
             "max-w-screen-xl m-auto p-3 flex flex-col sm:flex-row justify-between items-center overflow-hidden transition-[max-height] " +
@@ -49,7 +49,7 @@ export default function Navbar() {
             <span className="text-3xl font-bold tracking-tight">
               <Link to="/" className="flex h-[25px] gap-1">
                 <img src="/logo.png" alt="logo" className="scale-150" />
-                <img src="/text_logo.png" alt="textLogo" />
+                <img src="/text_logo.png" alt="textLogo" className="invert" />
               </Link>
             </span>
             <div
