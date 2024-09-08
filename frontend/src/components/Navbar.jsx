@@ -24,13 +24,13 @@ export default function Navbar() {
 
   return (
     <div className="w-full">
-      <div
+      {/* <div
         className={navbarHeight}
         style={{
           height: "60px",
         }}
-      ></div>
-      <div className="fixed z-50 top-0 left-0 w-full navbar-bg text-white font-bold sm:font-normal">
+      ></div> */}
+      <div className="fixed max-h-screen z-50 top-0 left-0 w-full bg-slate-800 text-white font-bold sm:font-normal">
         <div
           className={
             "max-w-screen-xl m-auto p-3 flex flex-col sm:flex-row justify-between items-center overflow-hidden transition-[max-height] " +

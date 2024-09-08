@@ -1,4 +1,4 @@
-import React from "react";
+import ScrollTranslateComponent from "./OnScroll";
 
 export default function AboutSection() {
   const sections = [
@@ -35,17 +35,70 @@ export default function AboutSection() {
     ],
   ];
 
+  const showOff = [
+    ["500+", "Participants"],
+    ["20+", "Sports"],
+    ["150+", "Colleges"],
+  ];
+
   return (
     <div>
-      <div className="m-auto flex flex-col gap-10">
-        {sections.map((section) => (
-          <div>
-            <div className="text-white text-4xl font-bold text-center pb-2">
-              {section[0]}
-            </div>
-            <div className="text-white text-lg text-center">{section[1]}</div>
+      <div className="m-auto flex flex-col gap-10 px-3">
+        <div>
+          {
+            <ScrollTranslateComponent
+              element={
+                <div className="text-black text-2xl font-bold text-center pb-2">
+                  {sections[0][0]}
+                </div>
+              }
+              from="translateY(0px) translateX(-60px)"
+              to="translateY(0px) translateX(0px)"
+              opacity={false}
+            />
+          }
+          <div className="text-black text-base text-center">
+            {sections[0][1]}
           </div>
-        ))}
+        </div>
+        <div className="flex flex-col justify-center items-center w-full overflow-hidden">
+          <div className="text-2xl font-bold mb-2">Our Reach</div>
+          {showOff.map((element, index) => {
+            return (
+              <ScrollTranslateComponent
+                element={
+                  <div className="flex flex-col justify-items-center my-1">
+                    <div className="text-xl font-bold w-48 text-center rounded-full py-2 shadow-inner shadow-neutral-700 bg-gray-200">
+                      {element[0]}
+                    </div>
+                    <did className="text-center">{element[1]}</did>{" "}
+                  </div>
+                }
+                from={index % 2 ? "translateX(-100%)" : "translateX(100%)"}
+                to="translateX(0%)"
+                opacity={false}
+              />
+            );
+          })}
+        </div>
+        {/* <div>
+          {
+            <ScrollTranslateComponent
+              element={
+                <div className="text-black text-2xl font-bold text-center pb-2">
+                  {sections[1][0]}
+                </div>
+              }
+              from="translateY(0px) translateX(60px)"
+              to="translateY(0px) translateX(0px)"
+              opacity={false}
+            />
+          }
+
+          <div className="text-black text-base text-center">
+            {sections[1][1]}
+          </div>
+        </div> */}
       </div>
     </div>
   );

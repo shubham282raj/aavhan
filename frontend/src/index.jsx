@@ -17,6 +17,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
       <AppContextProvider>
+        <div class="background fixed h-screen w-screen -z-50"></div>
         <App />
       </AppContextProvider>
     </QueryClientProvider>

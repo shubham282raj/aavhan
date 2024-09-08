@@ -1,3 +1,5 @@
+import ScrollTranslateComponent from "./OnScroll";
+
 export default function Incentives() {
   const incentives = [
     [
@@ -20,16 +22,25 @@ export default function Incentives() {
     ],
   ];
   return (
-    <div className="">
-      <div className="text-white text-4xl font-bold text-center pb-3">
+    <div className="px-3">
+      <div className="text-slate-800 text-4xl font-bold text-center pb-3">
         INCENTIVES
       </div>
       <div className="text-white text-center flex flex-col sm:flex-row sm:flex-wrap sm:justify-center gap-3">
-        {incentives.map((incentive) => (
-          <div className="bg-white bg-opacity-20 rounded-lg px-8 py-5 sm:w-[46%]">
-            <div className="text-xl font-bold">{incentive[0]}</div>
-            <div className="">{incentive[1]}</div>
-          </div>
+        {incentives.map((incentive, index) => (
+          <ScrollTranslateComponent
+            element={
+              <>
+                <div className="text-xl font-bold">{incentive[0]}</div>
+                <div className="">{incentive[1]}</div>
+              </>
+            }
+            className="text-slate-800 bg-black bg-opacity-15 rounded-lg px-4 py-5 sm:w-[46%]"
+            // from="translateY(0px) translateX(-100px)"
+            // to="translateY(0px) translateX(0px)"
+            opacity={true}
+            time="1s"
+          />
         ))}
       </div>
     </div>
