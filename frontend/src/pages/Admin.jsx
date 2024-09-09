@@ -24,7 +24,7 @@ function UserCard({ user, tasks }) {
 
   return (
     <>
-      <div className="m-auto bg-white max-w-screen-md w-full rounded-lg p-3 flex flex-col">
+      <div className="m-auto bg-white max-w-screen-md w-full rounded-lg p-3 flex flex-col shadow-md">
         <div
           className="cursor-pointer"
           onClick={() => {
@@ -176,7 +176,7 @@ export default function Admin() {
 
   if (!isLoggedIn) {
     return (
-      <div className="bg-white flex flex-col gap-4 mx-auto my-10 py-10 px-20 rounded-2xl max-w-screen-md">
+      <div className="bg-white flex flex-col gap-4 mx-auto py-10 px-20 rounded-2xl max-w-screen-md my-[100px]">
         You must login to access this page
       </div>
     );
@@ -187,7 +187,7 @@ export default function Admin() {
   }
 
   return (
-    <div className="my-5 flex flex-col gap-5">
+    <div className="flex flex-col gap-3 my-[100px]">
       {data?.users?.map((user) => {
         return <UserCard user={user} tasks={data.tasks} />;
       })}

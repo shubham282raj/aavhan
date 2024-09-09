@@ -35,7 +35,7 @@ export default function Leaderboard() {
             <ScrollTranslateComponent
               key={user._id + "leaderboard"}
               className={
-                "bg-black bg-opacity-5 shadow-sm shadow-slate-700 rounded-lg p-5 flex-1 min-w-full flex " +
+                "bg-white bg-opacity-60 shadow-slate-400 shadow-md rounded-lg p-5 flex-1 min-w-full flex " +
                 (index < 3 &&
                   " min-w-full sm:min-w-[32%] sm:flex-col gap-5 sm:gap-3 ")
               }

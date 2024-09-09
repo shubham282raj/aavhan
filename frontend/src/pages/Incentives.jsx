@@ -38,7 +38,7 @@ export default function Incentives() {
     ],
   ];
   return (
-    <div className="px-3 mt-[80px] overflow-hidden max-w-screen-xl mx-auto">
+    <div className="px-3 mt-[80px] overflow-hidden py-2 max-w-screen-xl mx-auto">
       <div className="text-slate-800 text-4xl font-bold text-center pb-3">
         INCENTIVES
       </div>
@@ -58,7 +58,7 @@ export default function Incentives() {
                 <div className="">{incentive[1]}</div>
               </>
             }
-            className="text-slate-800 bg-black bg-opacity-15 rounded-lg px-4 py-5 sm:w-[46%]"
+            className="text-slate-800 bg-white bg-opacity-60 shadow-slate-400 shadow-md rounded-lg px-4 py-5 sm:w-[46%]"
             from={index % 2 ? "translateX(200px)" : "translateX(-200px)"}
             to="translateX(0px)"
             // opacity={true}

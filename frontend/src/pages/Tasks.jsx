@@ -18,7 +18,7 @@ export default function Tasks() {
 
   if (!isLoggedIn) {
     return (
-      <div className="bg-white flex flex-col gap-4 mx-auto my-10 py-10 px-20 rounded-2xl max-w-screen-md">
+      <div className="bg-white flex flex-col gap-4 mx-auto py-10 px-20 rounded-2xl max-w-screen-md my-[100px]">
         You must login to access this page
       </div>
     );
@@ -29,8 +29,8 @@ export default function Tasks() {
   }
 
   return (
-    <div>
-      <div className="xl:sticky xl:top-[70px] z-10 xl:border-b-2 xl:border-b-slate-800 block w-32 xl:w-full xl:max-w-screen-md bg-white mx-auto p-2 text-center text-xl m-auto mt-10 mb-3 font-bold tracking-wide text-slate-800 rounded-xl">
+    <div className="px-3">
+      <div className="xl:sticky xl:top-[70px] z-10 shadow-md block w-32 xl:w-full xl:max-w-screen-md bg-white mx-auto p-2 text-center text-xl m-auto mt-20 mb-3 font-bold tracking-wide text-slate-800 rounded-xl">
         Tasks
       </div>
       {user.taskList

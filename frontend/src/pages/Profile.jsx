@@ -29,7 +29,7 @@ export default function Profile() {
 
   if (!isLoggedIn) {
     return (
-      <div className="bg-white flex flex-col gap-4 mx-auto my-10 py-10 px-20 rounded-2xl max-w-screen-md">
+      <div className="bg-white flex flex-col gap-4 mx-auto my-10 py-[100px] px-20 rounded-2xl max-w-screen-md">
         You must login to access this page
       </div>
     );
@@ -40,8 +40,8 @@ export default function Profile() {
   }
 
   return (
-    <div className="xl:flex gap-2">
-      <div className="xl:sticky xl:top-[70px] w-full bg-white flex flex-col gap-4 mx-auto mt-10 mb-5 py-10 px-20 rounded-2xl max-w-screen-md">
+    <div className="xl:flex gap-2 my-[100px] px-3">
+      <div className="xl:sticky xl:top-[70px] w-full bg-white bg-opacity-50 shadow-lg flex flex-col gap-4 mx-auto mt-10 mb-5 py-10 px-20 rounded-2xl max-w-screen-md">
         <div className="text-2xl m-auto font-bold tracking-wide text-slate-800">
           Profile
         </div>
@@ -71,8 +71,11 @@ export default function Profile() {
         )}
         {user.admin && (
           <button
+            // onClick={() => {
+            //   mutation.mutate();
+            // }}
             onClick={() => {
-              mutation.mutate();
+              showToast("Testing");
             }}
             className="bg-gray-700 rounded m-auto text-center text-white p-2 font-bold w-48"
           >

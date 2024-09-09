@@ -58,7 +58,7 @@ export default function Home() {
       </div>
       <div className="w-full h-0 relative">
         <div className="absolute h-16 sm:bottom-0 w-full bg-slate-900">
-          <div className="max-w-screen-lg h-full m-auto flex justify-between items-center">
+          <div className="max-w-screen-lg h-full m-auto flex justify-between items-center px-3">
             <div className="text-white text-lg">&#169; Aavhan, IIT Bombay</div>
             <div className="flex justify-center items-center gap-2 sm:gap-4">
               {links.map((link) => {

@@ -5,6 +5,7 @@ export default {
     extend: {
       animation: {
         "custom-bounce": "custom-bounce 1s infinite",
+        wiper: "wipe 3s ease-in-out infinite",
       },
       keyframes: {
         wipe: {
@@ -12,9 +13,6 @@ export default {
           "33.33%": { transform: "translateX(100%) rotate(45deg)" },
           "100%": { transform: "translateX(100%) rotate(45deg)" },
         },
-      },
-      animation: {
-        wiper: "wipe 3s ease-in-out infinite",
       },
     },
   },
