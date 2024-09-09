@@ -6,6 +6,16 @@ export default {
       animation: {
         "custom-bounce": "custom-bounce 1s infinite",
       },
+      keyframes: {
+        wipe: {
+          "0%": { transform: "translateX(-100%) rotate(45deg)" },
+          "33.33%": { transform: "translateX(100%) rotate(45deg)" },
+          "100%": { transform: "translateX(100%) rotate(45deg)" },
+        },
+      },
+      animation: {
+        wiper: "wipe 3s ease-in-out infinite",
+      },
     },
   },
   plugins: [],

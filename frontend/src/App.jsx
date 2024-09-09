@@ -7,6 +7,7 @@ import Profile from "./pages/Profile";
 import Tasks from "./pages/Tasks";
 import Leaderboard from "./pages/Leaderboard";
 import Admin from "./pages/Admin";
+import Incentives from "./pages/Incentives";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/incentives" element={<Incentives />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/leaderboard" element={<Leaderboard />} />

@@ -10,17 +10,20 @@ export default function Navbar() {
   const navigationLinks = isLoggedIn
     ? [
         ["/", "Home"],
+        ["/incentives", "Incentives"],
         ["/leaderboard", "Leaderboard"],
         ["/tasks", "Tasks"],
         ["/profile", "Profile"],
       ]
     : [
         ["/", "Home"],
+        ["/incentives", "Incentives"],
+        ["/leaderboard", "Leaderboard"],
         ["/register", "Join Us!"],
         ["/login", "Login"],
       ];
 
-  const navbarHeight = `sm:min-h-[70px] sm:max-h[70px]`;
+  const navbarHeight = `md:min-h-[70px] md:max-h[70px]`;
 
   return (
     <div className="w-full">
@@ -30,14 +33,14 @@ export default function Navbar() {
           height: "60px",
         }}
       ></div> */}
-      <div className="fixed max-h-screen z-50 top-0 left-0 w-full bg-slate-800 text-white font-bold sm:font-normal">
+      <div className="fixed max-h-screen z-50 top-0 left-0 w-full bg-slate-900 text-white font-bold md:font-normal">
         <div
           className={
-            "max-w-screen-xl m-auto p-3 flex flex-col sm:flex-row justify-between items-center overflow-hidden transition-[max-height] " +
+            "max-w-screen-xl m-auto p-3 flex flex-col md:flex-row justify-between items-center overflow-hidden transition-[max-height] " +
             navbarHeight
           }
         >
-          <div className="flex items-center justify-between w-full sm:w-auto">
+          <div className="flex items-center justify-between w-full md:w-auto">
             <span className="text-3xl font-bold tracking-tight">
               <Link to="/" className="flex h-[25px] gap-1">
                 <img src="/logo.png" alt="logo" className="scale-150" />
@@ -45,7 +48,7 @@ export default function Navbar() {
               </Link>
             </span>
             <div
-              className="sm:hidden text-3xl cursor-pointer h-8 flex flex-col justify-center items-center w-8 relative "
+              className="md:hidden text-3xl cursor-pointer h-8 flex flex-col justify-center items-center w-8 relative "
               onClick={() => setToggleMenu(!toggleMenu)}
             >
               <div
@@ -53,7 +56,7 @@ export default function Navbar() {
                 style={{
                   transform: toggleMenu
                     ? "rotate(-45deg)"
-                    : "translate(0, -10px)",
+                    : "translate(0, -8px)",
                   transition: "all 0.3s ease",
                 }}
               ></div>
@@ -67,9 +70,7 @@ export default function Navbar() {
               <div
                 className="rounded-full h-[2.5px] bg-white absolute w-full"
                 style={{
-                  transform: toggleMenu
-                    ? "rotate(45deg)"
-                    : "translate(0, 10px)",
+                  transform: toggleMenu ? "rotate(45deg)" : "translate(0, 8px)",
                   transition: "all 0.3s ease",
                 }}
               ></div>
@@ -77,9 +78,9 @@ export default function Navbar() {
           </div>
           <div
             className={
-              "sm:block sm:w-auto sm:h-auto sm:static sm:bg-transparent sm:z-auto absolute -z-10 top-0 w-screen h-screen backdrop-blur-md bg-black bg-opacity-25 transition-all sm:translate-x-0" +
+              "md:block md:w-auto md:h-auto md:static md:bg-transparent md:z-auto absolute -z-10 top-0 w-screen h-screen backdrop-blur-md bg-black bg-opacity-25 transition-all md:translate-x-0" +
               (toggleMenu ? " translate-x-[0%]" : " translate-x-[100%]") +
-              " sm:translate-x-0"
+              " md:translate-x-0"
               // (toggleMenu ? " " : " hidden")
             }
             style={{
@@ -88,7 +89,7 @@ export default function Navbar() {
             }}
           >
             <div
-              className={`h-[80%] sm:h-auto flex flex-col justify-center items-center sm:flex sm:flex-row text-xl gap-7 sm:gap-5 mt-2`}
+              className={`h-[80%] md:h-auto flex flex-col justify-center items-center md:flex md:flex-row text-xl gap-7 md:gap-5 mt-2`}
             >
               {navigationLinks.map((link, index) => {
                 return (

@@ -43,20 +43,12 @@ export default function AboutSection() {
 
   return (
     <div>
-      <div className="m-auto flex flex-col gap-10 px-3">
+      <div className="m-auto my-10 flex flex-col gap-10 px-3 max-w-screen-lg">
         <div>
-          {
-            <ScrollTranslateComponent
-              element={
-                <div className="text-black text-2xl font-bold text-center pb-2">
-                  {sections[0][0]}
-                </div>
-              }
-              from="translateY(0px) translateX(-60px)"
-              to="translateY(0px) translateX(0px)"
-              opacity={false}
-            />
-          }
+          <div className="text-black text-2xl font-bold text-center pb-2">
+            {sections[0][0]}
+          </div>
+
           <div className="text-black text-base text-center">
             {sections[0][1]}
           </div>
