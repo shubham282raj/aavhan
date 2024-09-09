@@ -26,7 +26,7 @@ function Faq({ faq, open, setOpen, index }) {
         style={{
           maxHeight:
             open == index ? faqRef.current?.scrollHeight + "px" : "0px",
-          transition: "all 0.5s ease-in-out",
+          transition: `all 0.3s ease-in-out`,
         }}
         ref={faqRef}
       >

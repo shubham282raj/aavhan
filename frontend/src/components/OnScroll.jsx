@@ -7,6 +7,7 @@ const ScrollTranslateComponent = ({
   opacity,
   time = "0.5s",
   className = "",
+  delay = "0s",
 }) => {
   const [isVisible, setIsVisible] = useState(false);
   const elementRef = useRef(null); // Ref for the observed element
@@ -42,6 +43,7 @@ const ScrollTranslateComponent = ({
         transform: isVisible ? to : from, // Animate from -100% to 0%
         opacity: opacity ? (isVisible ? "1" : "0") : "1",
         transition: "all " + time + " ease-out", // Smooth transition when it becomes visible
+        transitionDelay: delay,
       }}
       className={className}
     >
