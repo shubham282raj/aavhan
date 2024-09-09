@@ -77,7 +77,10 @@ export default function LandingPage() {
         <div className="text-white text-2xl xl:text-4xl font-bold flex flex-col gap-1 mb-2">
           {typingHead} &#8203;
         </div>
-        <Link className="inline-block bordr text-4xl px-6 py-3 text-white hover:bg-black hover:bg-opacity-40 transition-colors font-bold rounded border relative overflow-clip after:absolute after:left-1/2 after:-translate-x-1/2 after:h-[3px] after:w-0 hover:after:w-4/5 after:bg-white after:bottom-2 after:rounded-full joinUsBtn">
+        <Link
+          to={"/register"}
+          className="inline-block bordr text-4xl px-6 py-3 text-white hover:bg-black hover:bg-opacity-40 transition-colors font-bold rounded border relative overflow-clip after:absolute after:left-1/2 after:-translate-x-1/2 after:h-[3px] after:w-0 hover:after:w-4/5 after:bg-white after:bottom-2 after:rounded-full joinUsBtn"
+        >
           <div className="absolute h-10 w-full rotate-45 top-0 left-0 bg-white bg-opacity-30 -z-10 animate-wiper"></div>
           Join Us!
         </Link>

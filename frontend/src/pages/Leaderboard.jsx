@@ -26,7 +26,7 @@ export default function Leaderboard() {
 
   return (
     <div className="my-[60px] sm:my-[80px] px-3 max-w-screen-md m-auto overflow-hidden pb-2">
-      <div className="text-4xl text-center font-bold py-3 text-slate-800">
+      <div className="text-3xl sm:text-4xl text-center font-bold py-3 text-slate-800">
         LEADERBOARD
       </div>
       <div className="flex flex-row flex-wrap gap-2">
@@ -43,11 +43,11 @@ export default function Leaderboard() {
               to="translateX(0px)"
               time="0.3s"
               opacity={true}
-              delay={index * 0.2 + "s"}
+              delay={(index * 0.2 < 0.5 ? index * 0.2 : 0.5) + "s"}
               element={
                 <>
                   {index < 3 ? (
-                    <div className="h-20 aspect-square relative sm:m-auto overflow-hidden rounded-full shadow-slate-600 shadow-md">
+                    <div className="h-20 aspect-square relative sm:m-auto overflow">
                       <div
                         className={
                           "w-[90%] aspect-square border rounded-full absolute z-20 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex justify-center items-center"
@@ -66,7 +66,7 @@ export default function Leaderboard() {
                         </div>
                       </div>
                       <div
-                        className="w-full h-full border absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full z-10"
+                        className="w-full shadow-slate-600 shadow-md aspect-square border absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full z-10"
                         style={{
                           background:
                             index == 0

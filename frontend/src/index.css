@@ -53,10 +53,18 @@
 
 input,
 textarea {
-  background-color: rgba(0, 0, 0, 0.16);
+  background-color: rgba(255, 255, 255, 0.5);
   outline: none;
 }
 
 .joinUsBtn::after {
   transition: all 0.4s ease-in-out;
+}
+
+@layer base {
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
 }

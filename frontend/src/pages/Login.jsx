@@ -34,7 +34,7 @@ export default function Login() {
 
   return (
     <form
-      className=" bg-white text-white bg-opacity-20 flex flex-col gap-4 mx-auto my-10 p-10 rounded-2xl max-w-screen-md"
+      className="bg-black bg-opacity-5 text-slate-800 flex flex-col gap-4 mx-3 sm:mx-auto p-10 rounded-2xl max-w-screen-md my-[100px] shadow-inner backdrop-blur-[2px]"
       onSubmit={onSubmit}
     >
       <h2 className="text-2xl font-bold">Welcome Back</h2>

@@ -3,13 +3,13 @@ export default function Contact() {
     {
       name: "Sarthak",
       post: "Hospitality Manager",
-      img: "",
+      img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTY6qtMj2fJlymAcGTWLvNtVSCULkLnWYCDcQ&s",
       phone: "8767086190",
     },
     {
       name: "Pratik",
       post: "Hospitality Manager",
-      img: "",
+      img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTY6qtMj2fJlymAcGTWLvNtVSCULkLnWYCDcQ&s",
       phone: "9765599815",
     },
   ];

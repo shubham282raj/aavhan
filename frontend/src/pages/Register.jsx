@@ -60,7 +60,7 @@ export default function Register() {
 
   return (
     <form
-      className=" bg-white text-white bg-opacity-20 flex flex-col gap-4 mx-auto my-10 py-10 px-6 sm:px-10 rounded-2xl max-w-screen-md"
+      className=" bg-black bg-opacity-5 text-slate-800 flex flex-col gap-4 mx-3 sm:mx-auto py-10 px-6 sm:px-10 rounded-2xl max-w-screen-md my-[80px] shadow-inner backdrop-blur-[2px]"
       onSubmit={onSubmit}
     >
       <div className="flex  items-center relative">
@@ -87,7 +87,7 @@ export default function Register() {
           </button>
         )}
         <h2 className="text-2xl font-bold m-auto px-10">
-          {!isPreview ? "Registration Form" : "Registration Preview"}
+          {!isPreview ? "Registration Form" : "Preview"}
         </h2>
       </div>
       {!isPreview ? (
@@ -276,7 +276,7 @@ export default function Register() {
             )}
           </label>
           <button
-            className="bg-black bg-opacity-40 rounded m-auto text-white p-2 font-bold w-40"
+            className="bg-gray-700 mt-5 rounded m-auto text-white p-2 font-bold w-40"
             onClick={async () => {
               const result = await trigger();
               result && setIsPreview((value) => !value);
@@ -308,7 +308,7 @@ export default function Register() {
           {!otpSent && (
             <button
               type="submit"
-              className="bg-black bg-opacity-40 rounded m-auto text-white p-2 font-bold w-40"
+              className="bg-gray-700 rounded m-auto text-white p-2 font-bold w-40"
               disabled={otpMutation.isLoading}
             >
               {otpMutation.isLoading ? <BounceLoading /> : "Get OTP"}
@@ -321,7 +321,7 @@ export default function Register() {
               <label className="m-auto text-base font-bold flex-1">
                 OTP
                 <input
-                  className="rounded w-20 py-1 px-2 ml-4 font-normal"
+                  className="rounded w-20 py-1 px-2 ml-4 font-normal "
                   type="number"
                   {...register("otp", {
                     required: {
@@ -351,7 +351,7 @@ export default function Register() {
               </div>
               <button
                 type="submit"
-                className="bg-black bg-opacity-40 rounded m-auto text-white p-2 font-bold w-40"
+                className="bg-gray-700 rounded m-auto text-white p-2 font-bold w-40"
                 disabled={mutation.isLoading}
               >
                 {mutation.isLoading ? <BounceLoading /> : "Register"}
