@@ -37,23 +37,51 @@ export default function LandingPage() {
     setTypingHead(typingHeadArray[iRef.current].substring(0, jRef.current));
   };
 
+  const images = ["/home2.jpg", "/home2.jpg"];
+  const [imageIndex, setImageIndex] = useState(0);
+  const imageChangeDirRef = useRef(null);
+  const imageChangeIntervalRef = useRef(null);
+  function setImageChangeInterval() {
+    clearInterval(imageChangeIntervalRef.current);
+    imageChangeIntervalRef.current = setInterval(() => {
+      setImageIndex((index) => {
+        if (index == 0) imageChangeDirRef.current = 1; // right direction
+        else if (index == images.length - 1) imageChangeDirRef.current = 0;
+        return imageChangeDirRef.current ? index + 1 : index - 1;
+      });
+    }, 5000);
+  }
+  function clearImageChangeInterval() {
+    clearInterval(imageChangeIntervalRef.current);
+  }
+
   useEffect(() => {
     intervalRef.current = setInterval(typingAnimationFunction, 100);
+    setImageChangeInterval();
+    imageChangeDirRef.current = 1;
 
     return () => {
       clearInterval(intervalRef.current);
       clearTimeout(timeoutRef.current);
+      clearImageChangeInterval();
     };
   }, []);
 
   return (
     <div className="relative min-h-screen overflow-hidden">
-      <div className="h-full w-full absolute -z-10 bg-slate-900">
-        <img
-          src="/home2.jpg"
-          alt="homeBG"
-          className="h-full w-full object-cover"
-        />
+      <div className="h-full w-full absolute -z-10 bg-slate-900 flex">
+        {images.map((imageURL, index) => (
+          <img
+            key={`home-page-image-${index}`}
+            src={imageURL}
+            alt="homeBG"
+            className="h-full w-full object-cover flex-grow-0 flex-shrink-0"
+            style={{
+              translate: `${-100 * imageIndex}%`,
+              transition: "translate 400ms ease-out",
+            }}
+          />
+        ))}
       </div>
       <ScrollTranslateComponent
         element={
