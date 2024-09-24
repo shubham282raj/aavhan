@@ -1,29 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 
-export default function ImageSlider() {
-  const images = [
-    {
-      url: "https://images.pexels.com/photos/28220698/pexels-photo-28220698/free-photo-of-nguoitamchuyenhouse-sai-gon-vi-t-nam-2020-saigon-vietnam-2020.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load",
-      heading: "Image 1",
-      description: "Description for image 1",
-    },
-    {
-      url: "https://images.pexels.com/photos/27489977/pexels-photo-27489977/free-photo-of-milky-way.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load",
-      heading: "Image 2",
-      description: "Description for image 2",
-    },
-    {
-      url: "https://images.pexels.com/photos/28277461/pexels-photo-28277461/free-photo-of-a-road-in-the-middle-of-a-forest-with-fog.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load",
-      heading: "Image 3",
-      description: "Description for image 3",
-    },
-    {
-      url: "https://images.pexels.com/photos/28281605/pexels-photo-28281605/free-photo-of-a-red-staircase-leading-to-a-jungle.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load",
-      heading: "Image 4",
-      description: "Description for image 4",
-    },
-  ];
-
+export default function ImageSlider({ images, sheetName }) {
   const [imageIndex, setImageIndex] = useState(0);
 
   const nextImage = () => {
@@ -60,11 +37,11 @@ export default function ImageSlider() {
     lastWheelTrigger.current = Date.now();
 
     return clearImageChangeInterval;
-  }, []);
+  }, [images, sheetName]);
 
   return (
-    <div className="w-full px-3">
-      <div className="text-2xl font-bold text-center mb-3">Facilities</div>
+    <div className="w-full px-3 my-5">
+      <div className="text-2xl font-bold text-center mb-3">{sheetName}</div>
       <div className="relative max-w-screen-md mx-auto w-full aspect-[16/10] sm:aspect-video flex overflow-hidden rounded-md">
         <div
           className="z-10 absolute w-full h-full top-0 left-0"
@@ -85,6 +62,7 @@ export default function ImageSlider() {
         ></div>
         {images.map((image, index) => (
           <div
+            key={`image-slider-${sheetName}-${index}`}
             className="relative w-full h-full flex-shrink-0 flex-grow-0 select-none"
             style={{
               translate: `${-100 * imageIndex}%`,

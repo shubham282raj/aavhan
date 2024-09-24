@@ -1,4 +1,5 @@
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "";
+import * as XLSX from "xlsx";
 
 export const allUsers = async () => {
   const responsePromise = fetch(`${API_BASE_URL}/api/user/admin/all-users`, {
@@ -201,5 +202,32 @@ export const signOut = async () => {
 
   if (!response.ok) {
     throw new Error("Error while Logging Out");
+  }
+};
+
+export const getSheet = async (sheetUrl) => {
+  try {
+    let response = await fetch(sheetUrl);
+
+    if (!response.ok) {
+      throw new Error("Failed to fetch the spreadsheet");
+    }
+
+    const arrayBuffer = await response.arrayBuffer();
+    const workbook = XLSX.read(arrayBuffer, { type: "array" });
+
+    const sheetsData = {};
+
+    workbook.SheetNames.forEach((sheetName) => {
+      const sheet = workbook.Sheets[sheetName];
+      const sheetData = XLSX.utils.sheet_to_json(sheet, { header: 0 });
+
+      sheetsData[sheetName] = sheetData;
+    });
+
+    return sheetsData;
+  } catch (error) {
+    console.error("Error fetching or processing the spreadsheet:", error);
+    throw error;
   }
 };

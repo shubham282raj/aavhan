@@ -4,14 +4,15 @@ import AboutSection from "../components/AboutSection";
 import LandingPage from "../components/LandingPage";
 import layeredSVG from "../svg/layered.svg";
 import Footer from "../components/Footer";
-import ImageSlider from "../components/ImageSlider";
+import ImageSliderLoaders from "../components/ImageSliderLoaders";
 
 export default function Home() {
   return (
     <div className="relative">
       <LandingPage />
       <AboutSection />
-      <ImageSlider />
+      <ImageSliderLoaders sheetName="Facilities" />
+      <ImageSliderLoaders sheetName="Past Events" />
       <img
         src={layeredSVG}
         alt="layeredSVG"
