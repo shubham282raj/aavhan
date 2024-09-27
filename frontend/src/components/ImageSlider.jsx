@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { convertToDownloadLink } from "../functions/ImageUrl";
 
 export default function ImageSlider({ images, sheetName }) {
   const [imageIndex, setImageIndex] = useState(0);
@@ -70,7 +71,7 @@ export default function ImageSlider({ images, sheetName }) {
             }}
           >
             <img
-              src={image.url}
+              src={convertToDownloadLink(image.url)}
               alt={`image ${index}`}
               className="w-full h-full object-cover"
             ></img>
