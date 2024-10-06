@@ -1,6 +1,9 @@
 import { Link } from "react-router-dom";
 import { useEffect, useState, useRef } from "react";
 import ScrollTranslateComponent from "./OnScroll";
+import { convertToDownloadLink } from "../functions/ImageUrl";
+import { useQuery } from "react-query";
+import { getSheet } from "../api-clients";
 
 export default function LandingPage() {
   const typingHeadArray = ["Be an Ambassador", "Be our Family"];
@@ -37,7 +40,18 @@ export default function LandingPage() {
     setTypingHead(typingHeadArray[iRef.current].substring(0, jRef.current));
   };
 
-  const images = ["/home2.jpg", "/home2.jpg"];
+  const {
+    data: sheets = {
+      "Landing Page": [{ url: "/home2.jpg", brightness: "0.7" }],
+    },
+  } = useQuery({
+    queryKey: "getSheetData_General",
+    queryFn: () =>
+      getSheet(
+        "https://docs.google.com/spreadsheets/d/1fibIy-Ts1g5DCO6ETFEN40c7HSj456y04wFdpUvlGJI/export?format=xlsx"
+      ),
+  });
+
   const [imageIndex, setImageIndex] = useState(0);
   const imageChangeDirRef = useRef(null);
   const imageChangeIntervalRef = useRef(null);
@@ -45,8 +59,10 @@ export default function LandingPage() {
     clearInterval(imageChangeIntervalRef.current);
     imageChangeIntervalRef.current = setInterval(() => {
       setImageIndex((index) => {
+        console.log(sheets["Landing Page"].length);
         if (index == 0) imageChangeDirRef.current = 1; // right direction
-        else if (index == images.length - 1) imageChangeDirRef.current = 0;
+        else if (index >= sheets["Landing Page"].length - 1)
+          imageChangeDirRef.current = 0;
         return imageChangeDirRef.current ? index + 1 : index - 1;
       });
     }, 5000);
@@ -70,15 +86,16 @@ export default function LandingPage() {
   return (
     <div className="relative min-h-screen overflow-hidden">
       <div className="h-full w-full absolute -z-10 bg-slate-900 flex">
-        {images.map((imageURL, index) => (
+        {sheets["Landing Page"].map((image, index) => (
           <img
             key={`home-page-image-${index}`}
-            src={imageURL}
+            src={convertToDownloadLink(image.url)}
             alt="homeBG"
-            className="h-full w-full object-cover flex-grow-0 flex-shrink-0"
+            className="h-full w-full object-cover flex-grow-0 flex-shrink-0 brightness"
             style={{
               translate: `${-100 * imageIndex}%`,
               transition: "translate 400ms ease-out",
+              filter: `brightness(${image.brightness})`,
             }}
           />
         ))}

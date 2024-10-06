@@ -1,4 +1,5 @@
-export function convertToDownloadLink(url) {
+export function convertToDownloadLink(url, width = 1000) {
+  console.log(url);
   // google drive links
   if (url.includes("drive.google.com")) {
     const match = url.match(
@@ -6,7 +7,7 @@ export function convertToDownloadLink(url) {
     );
     if (match && match[1]) {
       const fileId = match[1];
-      return `https://drive.google.com/thumbnail?id=${fileId}&sz=w1000`;
+      return `https://drive.google.com/thumbnail?id=${fileId}&sz=w${width}`;
     }
   }
   // github links

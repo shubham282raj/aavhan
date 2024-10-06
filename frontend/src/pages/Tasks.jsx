@@ -4,7 +4,7 @@ import { useAppContext } from "../contexts/AppContext";
 import TaskCard from "../components/TaskCard";
 import { LoadingAnimation } from "../components/LoadingAnimations";
 
-export default function Tasks() {
+export default function Tasks({ marginTop = true }) {
   const { isLoggedIn, showToast } = useAppContext();
 
   const { data: user = {}, isLoading } = useQuery({
@@ -30,7 +30,12 @@ export default function Tasks() {
 
   return (
     <div className="px-3">
-      <div className="xl:sticky xl:top-[70px] z-10 shadow-md block w-32 xl:w-full xl:max-w-screen-md bg-white mx-auto p-2 text-center text-xl m-auto mt-20 mb-3 font-bold tracking-wide text-slate-800 rounded-xl">
+      <div
+        className={
+          "xl:sticky xl:top-[70px] z-10 shadow-md block w-32 xl:w-full xl:max-w-screen-md bg-white mx-auto p-2 text-center text-xl m-auto mb-3 font-bold tracking-wide text-slate-800 rounded-xl " +
+          (marginTop && "mt-20")
+        }
+      >
         Tasks
       </div>
       {user.taskList
