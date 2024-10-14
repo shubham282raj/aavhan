@@ -5,6 +5,7 @@ import LandingPage from "../components/LandingPage";
 import layeredSVG from "../svg/layered.svg";
 import Footer from "../components/Footer";
 import ImageSliderLoaders from "../components/ImageSliderLoaders";
+import ImageSlider2 from "../components/ImageSlider2";
 
 export default function Home() {
   return (
@@ -13,6 +14,7 @@ export default function Home() {
       <AboutSection />
       <ImageSliderLoaders sheetName="Facilities" />
       <ImageSliderLoaders sheetName="Past Events" />
+      {/* <ImageSlider2 /> */}
       <img
         src={layeredSVG}
         alt="layeredSVG"

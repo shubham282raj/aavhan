@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, useContext, useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import { validateAuthToken } from "../api-clients";
 import Toast from "../components/Toast";
@@ -11,11 +11,30 @@ export const AppContextProvider = ({ children }) => {
     retry: false,
   });
 
+  const [windowSize, setWindowSize] = useState({
+    width: window.innerWidth,
+    height: window.innerHeight,
+  });
+
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowSize({
+        width: window.innerWidth,
+        height: window.innerHeight,
+      });
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   return (
     <AppContext.Provider
       value={{
         isLoggedIn: isSuccess,
         showToast: (message, type = "SUCCESS") => setToast({ message, type }),
+        windowSize,
       }}
     >
       {children}

@@ -43,7 +43,11 @@ export default function ImageSlider({ images, sheetName }) {
   return (
     <div className="w-full px-3 my-5">
       <div className="text-2xl font-bold text-center mb-3">{sheetName}</div>
-      <div className="relative max-w-screen-md mx-auto w-full aspect-[16/10] sm:aspect-video flex overflow-hidden rounded-md">
+      <div
+        className="relative max-w-screen-md mx-auto w-full aspect-[16/10] sm:aspect-video flex overflow-hidden rounded-md"
+        onMouseEnter={clearImageChangeInterval}
+        onMouseLeave={setImageChangeInterval}
+      >
         <div
           className="z-10 absolute w-full h-full top-0 left-0"
           // slide gesture
@@ -58,8 +62,6 @@ export default function ImageSlider({ images, sheetName }) {
           }}
           // onScroll={(e) => handleUp(0, e.deltaX)}
           // hover and interval image changing
-          onMouseEnter={clearImageChangeInterval}
-          onMouseLeave={setImageChangeInterval}
         ></div>
         {images.map((image, index) => (
           <div
