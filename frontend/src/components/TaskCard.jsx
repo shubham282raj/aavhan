@@ -44,14 +44,6 @@ export default function TaskCard({ taskCompleted, task, headers }) {
           setShowSub((val) => !val);
         }}
       >
-        {taskCompleted.length > 0 &&
-          (Object.keys(taskCompleted).some(
-            (key) => taskCompleted[key].verified === "Pending"
-          ) ? (
-            <div className="p-2 w-fit rounded-full bg-orange-500 absolute -left-5 top-1"></div>
-          ) : (
-            <div className="p-2 w-fit rounded-full bg-green-500 absolute -left-5 top-1"></div>
-          ))}
         {task.map((value, idx) =>
           value === "" || headers[idx] === "" ? (
             <div key={idx}></div>
@@ -61,6 +53,34 @@ export default function TaskCard({ taskCompleted, task, headers }) {
             </div>
           )
         )}
+      </div>
+      <div className="flex opacity-100 rounded-full overflow-hidden">
+        {(
+          taskCompleted?.reduce(
+            (counts, submission) => {
+              const status = submission.verified.toLowerCase();
+              if (status === "verified") counts[0]++;
+              else if (status === "pending") counts[1]++;
+              else if (status === "rejected") counts[2]++;
+              return counts;
+            },
+            [0, 0, 0]
+          ) || [0, 0, 0]
+        ).map((subTypeCount, idx, arr) => (
+          <div
+            className={"h-1 "}
+            style={{
+              width: `${
+                (subTypeCount * 100) /
+                arr.reduce(
+                  (accumulator, currentValue) => accumulator + currentValue,
+                  0
+                )
+              }%`,
+              backgroundColor: idx == 0 ? "Green" : idx == 1 ? "Orange" : "Red",
+            }}
+          ></div>
+        ))}
       </div>
       {showSub && (
         <div className="flex flex-col gap-2 cursor-default">

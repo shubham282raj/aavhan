@@ -22,9 +22,9 @@ export default function Sponsors() {
 
   return (
     <div className="mx-auto">
-      <div className="text-2xl font-bold text-center mb-3">Sponsers</div>
+      <div className="text-2xl font-bold text-center mb-3">Sponsors</div>
       <div className="flex gap-4 flex-wrap justify-center max-w-screen-md mx-auto">
-        {sponsors.slice(0, count).map((sponsor, index) => (
+        {sponsors.slice(0, sponsors.length).map((sponsor, index) => (
           <ScrollTranslateComponent
             className="w-1/4 sm:w-36 aspect-square rounded-full overflow-hidden bg-white flex-shrink-0 flex-grow-0 shadow-xl shadow-gray-400"
             element={
@@ -43,7 +43,7 @@ export default function Sponsors() {
           />
         ))}
       </div>
-      <button
+      {/* <button
         className="block mx-auto m-4 border px-3 py-2 rounded-lg bg-white bg-opacity-70 font-semibold"
         onClick={() =>
           setCount((count) =>
@@ -52,7 +52,7 @@ export default function Sponsors() {
         }
       >
         See More
-      </button>
+      </button> */}
     </div>
   );
 }

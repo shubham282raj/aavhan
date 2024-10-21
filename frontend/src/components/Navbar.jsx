@@ -102,7 +102,13 @@ export default function Navbar() {
                   <Link
                     to={link[0]}
                     key={index}
-                    onClick={() => setToggleMenu(false)}
+                    onClick={() => {
+                      setToggleMenu(false);
+                      window.scrollTo({
+                        top: 0,
+                        behavior: "instant",
+                      });
+                    }}
                     className="relative"
                   >
                     {link[1]}
