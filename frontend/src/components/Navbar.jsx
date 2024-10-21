@@ -44,9 +44,13 @@ export default function Navbar() {
         >
           <div className="flex items-center justify-between w-full md:w-auto">
             <span className="text-3xl font-bold tracking-tight">
-              <Link to="/" className="flex h-[25px] gap-1">
+              <Link to="/" className="flex h-[25px] gap-6">
                 <img src="/logo.png" alt="logo" className="scale-150" />
-                <img src="/text_logo.png" alt="textLogo" className="invert" />
+                <img
+                  src="/text_logo.png"
+                  alt="textLogo"
+                  className="scale-[1.30] translate-y-1"
+                />
               </Link>
             </span>
             <div

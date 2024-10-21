@@ -90,11 +90,14 @@ export default function LandingPage() {
             key={`home-page-image-${index}`}
             src={convertToDownloadLink(image.url)}
             alt="homeBG"
-            className="h-full w-full object-cover flex-grow-0 flex-shrink-0 brightness"
+            className={
+              "h-full w-full object-cover flex-grow-0 flex-shrink-0 brightness " +
+              (index == imageIndex ? "scale-110" : "scale-100")
+            }
             style={{
               translate: `${-100 * index}%`,
               opacity: index == imageIndex ? "1" : "0",
-              transition: "all 800ms ease-in-out",
+              transition: "opacity 800ms ease-in-out, transform 5000ms linear",
               filter: `brightness(${image.brightness})`,
             }}
           />
