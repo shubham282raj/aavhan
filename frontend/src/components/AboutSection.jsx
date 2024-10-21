@@ -49,9 +49,7 @@ export default function AboutSection() {
             {sections[0][0]}
           </div>
 
-          <div className="text-black text-base text-center">
-            {sections[0][1]}
-          </div>
+          <div className="text-black text-lg text-center">{sections[0][1]}</div>
         </div>
         <div className="flex flex-col justify-center items-center w-full overflow-hidden">
           <div className="text-2xl font-bold mb-2">Our Reach</div>

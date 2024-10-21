@@ -108,6 +108,7 @@ export default function ImageSlider({ images, sheetName }) {
         <div className="absolute z-10 left-1/2 -translate-x-1/2 bg-white bg-opacity-30 backdrop-blur-sm px-4 py-1.5 rounded-full bottom-3 flex justify-center items-center gap-2">
           {images.map((_, index) => (
             <button
+              key={`image-slider-${sheetName}-${index}-bubble`}
               className="aspect-square bg-white border rounded-full flex-grow-0 flex-shrink-0"
               style={{
                 width: index == imageIndex ? "13px" : "8px",

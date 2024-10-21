@@ -1,5 +1,5 @@
 export function convertToDownloadLink(url, width = 1000) {
-  console.log(url);
+  // console.log(url);
   // google drive links
   if (url.includes("drive.google.com")) {
     const match = url.match(

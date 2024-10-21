@@ -14,6 +14,9 @@ export default {
           "100%": { transform: "translateX(100%) rotate(45deg)" },
         },
       },
+      fontFamily: {
+        custom: ["Custom", "sas-serif"],
+      },
     },
   },
   plugins: [],

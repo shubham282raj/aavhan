@@ -39,9 +39,7 @@ function Faq({ faq, open, setOpen, index }) {
 export default function Faqs() {
   const [open, setOpen] = useState(-1);
 
-  useEffect(() => {
-    console.log(open);
-  }, [open]);
+  useEffect(() => {}, [open]);
   const faqs = [
     {
       question: "What kind of work am I required to do? ",

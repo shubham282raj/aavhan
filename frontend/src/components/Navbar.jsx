@@ -1,26 +1,28 @@
-import { useRef, useState } from "react";
-import { Link } from "react-router-dom";
+import { useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 import { useAppContext } from "../contexts/AppContext";
 
 export default function Navbar() {
+  const location = useLocation();
+  const firstParam = location.pathname.split("/")[1];
   const { isLoggedIn } = useAppContext();
 
   const [toggleMenu, setToggleMenu] = useState(false);
 
   const navigationLinks = isLoggedIn
     ? [
-        ["/", "Home"],
-        ["/incentives", "Incentives"],
-        ["/leaderboard", "Leaderboard"],
-        ["/tasks", "Tasks"],
-        ["/profile", "Profile"],
+        ["", "Home"],
+        ["incentives", "Incentives"],
+        ["leaderboard", "Leaderboard"],
+        ["tasks", "Tasks"],
+        ["profile", "Profile"],
       ]
     : [
-        ["/", "Home"],
-        ["/incentives", "Incentives"],
-        ["/leaderboard", "Leaderboard"],
-        ["/register", "Join Us!"],
-        ["/login", "Login"],
+        ["", "Home"],
+        ["incentives", "Incentives"],
+        ["leaderboard", "Leaderboard"],
+        ["register", "Join Us!"],
+        ["login", "Login"],
       ];
 
   const navbarHeight = `md:min-h-[70px] md:max-h[70px]`;
@@ -97,8 +99,32 @@ export default function Navbar() {
                     to={link[0]}
                     key={index}
                     onClick={() => setToggleMenu(false)}
+                    className="relative"
                   >
                     {link[1]}
+                    <div
+                      className={
+                        "group absolute box-content px-1 w-full h-full top-0 left-1/2 -translate-x-1/2 scale-y-125"
+                      }
+                    >
+                      <div
+                        style={{
+                          transition: "ease-in-out 0.3s",
+                        }}
+                        className={
+                          "absolute left-0 bottom-0 w-0 h-1 bg-white opacity-0 rounded-lg group-hover:w-full group-hover:opacity-70"
+                        }
+                      ></div>
+                      <div
+                        style={{
+                          transition: "ease-in-out 0.3s",
+                        }}
+                        className={
+                          "absolute left-0 bottom-0 w-full h-1 bg-white rounded-lg " +
+                          (firstParam == link[0] ? "opacity-20" : " opacity-0")
+                        }
+                      ></div>
+                    </div>
                   </Link>
                 );
               })}

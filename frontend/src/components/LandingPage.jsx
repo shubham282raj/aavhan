@@ -59,7 +59,6 @@ export default function LandingPage() {
     clearInterval(imageChangeIntervalRef.current);
     imageChangeIntervalRef.current = setInterval(() => {
       setImageIndex((index) => {
-        console.log(sheets["Landing Page"].length);
         if (index == 0) imageChangeDirRef.current = 1; // right direction
         else if (index >= sheets["Landing Page"].length - 1)
           imageChangeDirRef.current = 0;
@@ -93,8 +92,9 @@ export default function LandingPage() {
             alt="homeBG"
             className="h-full w-full object-cover flex-grow-0 flex-shrink-0 brightness"
             style={{
-              translate: `${-100 * imageIndex}%`,
-              transition: "translate 400ms ease-out",
+              translate: `${-100 * index}%`,
+              opacity: index == imageIndex ? "1" : "0",
+              transition: "all 800ms ease-in-out",
               filter: `brightness(${image.brightness})`,
             }}
           />
