@@ -35,7 +35,10 @@ export default function Navbar() {
           height: "60px",
         }}
       ></div> */}
-      <div className="fixed max-h-screen z-50 top-0 left-0 w-full bg-slate-900 text-white font-bold md:font-normal">
+      <div
+        className="fixed max-h-screen z-50 top-0 left-0 w-full bg-slate-900 text-white font-bold md:font-normal"
+        id="navbarMain"
+      >
         <div
           className={
             "max-w-screen-xl m-auto p-3 flex flex-col md:flex-row justify-between items-center overflow-hidden transition-[max-height] " +
@@ -84,7 +87,7 @@ export default function Navbar() {
           </div>
           <div
             className={
-              "md:block md:w-auto md:h-auto md:static md:bg-transparent md:z-auto absolute -z-10 top-0 w-screen h-screen backdrop-blur-md bg-black bg-opacity-25 transition-all md:translate-x-0" +
+              "md:block md:w-auto md:h-auto md:static md:bg-transparent md:z-auto absolute -z-10 top-0 w-screen h-screen backdrop-blur-md md:backdrop-blur-0 bg-black bg-opacity-25 transition-all md:translate-x-0" +
               (toggleMenu ? " translate-x-[0%]" : " translate-x-[100%]") +
               " md:translate-x-0"
               // (toggleMenu ? " " : " hidden")

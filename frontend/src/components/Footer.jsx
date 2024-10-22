@@ -10,7 +10,6 @@ export default function Footer() {
         "https://docs.google.com/spreadsheets/d/1fibIy-Ts1g5DCO6ETFEN40c7HSj456y04wFdpUvlGJI/export?format=xlsx"
       ),
     select: (data) => data["Social Media"],
-    onSuccess: (data) => console.log(data),
   });
 
   return (
