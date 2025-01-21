@@ -17,24 +17,14 @@ export default function Incentives() {
       workshop,
     ],
     [
-      "INTERNSHIP",
-      "NGO interns/interview round for top performing CA's",
-      certificate,
-    ],
-    [
       "College Thrill",
-      "Enjoy 5-10% discount for your college students in the Aavhan Main Festival",
+      "Enjoy free stays for the top 5 participants in the Aavhan Main Festival!",
       referral,
     ],
     [
       "Gift Pack of Sponsors",
       "Chance to win glorious giveaways from noteworthy sponsors and Aavhan",
       gift,
-    ],
-    [
-      "Referral And Many more",
-      "10% discounts to students coming through CA program.",
-      referral,
     ],
   ];
   return (

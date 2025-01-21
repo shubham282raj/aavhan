@@ -15,7 +15,7 @@ export default function Home() {
       <AboutSection />
       <Sponsors />
       <ImageSliderLoaders sheetName="Facilities" />
-      {/* <ImageSliderLoaders sheetName="Past Events" /> */}
+      <ImageSliderLoaders sheetName="Past Events" />
       {/* <ImageSlider2 /> */}
       <img
         src={layeredSVG}
