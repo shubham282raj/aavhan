@@ -6,39 +6,39 @@ import { useQuery } from "react-query";
 import { getSheet } from "../api-clients";
 
 export default function LandingPage() {
-  const typingHeadArray = ["Be an Ambassador", "Be our Family"];
-  const [typingHead, setTypingHead] = useState("");
-  const intervalRef = useRef(null);
-  const timeoutRef = useRef(null);
-  const iRef = useRef(0);
-  const jRef = useRef(0);
-  const incRef = useRef(true);
+  // const typingHeadArray = ["Be an Ambassador", "Be our Family"];
+  // const [typingHead, setTypingHead] = useState("");
+  // const intervalRef = useRef(null);
+  // const timeoutRef = useRef(null);
+  // const iRef = useRef(0);
+  // const jRef = useRef(0);
+  // const incRef = useRef(true);
 
-  const typingAnimationFunction = () => {
-    if (incRef.current) {
-      if (jRef.current < typingHeadArray[iRef.current].length) {
-        jRef.current++;
-      } else {
-        incRef.current = false;
-        clearInterval(intervalRef.current);
-        timeoutRef.current = setTimeout(() => {
-          intervalRef.current = setInterval(typingAnimationFunction, 100);
-        }, 2000);
-      }
-    } else {
-      if (jRef.current > 0) {
-        jRef.current--;
-      } else {
-        incRef.current = true;
-        if (iRef.current < typingHeadArray.length - 1) {
-          iRef.current++;
-        } else {
-          iRef.current = 0;
-        }
-      }
-    }
-    setTypingHead(typingHeadArray[iRef.current].substring(0, jRef.current));
-  };
+  // const typingAnimationFunction = () => {
+  //   if (incRef.current) {
+  //     if (jRef.current < typingHeadArray[iRef.current].length) {
+  //       jRef.current++;
+  //     } else {
+  //       incRef.current = false;
+  //       clearInterval(intervalRef.current);
+  //       timeoutRef.current = setTimeout(() => {
+  //         intervalRef.current = setInterval(typingAnimationFunction, 100);
+  //       }, 2000);
+  //     }
+  //   } else {
+  //     if (jRef.current > 0) {
+  //       jRef.current--;
+  //     } else {
+  //       incRef.current = true;
+  //       if (iRef.current < typingHeadArray.length - 1) {
+  //         iRef.current++;
+  //       } else {
+  //         iRef.current = 0;
+  //       }
+  //     }
+  //   }
+  //   setTypingHead(typingHeadArray[iRef.current].substring(0, jRef.current));
+  // };
 
   const {
     data: sheets = {
@@ -71,13 +71,13 @@ export default function LandingPage() {
   }
 
   useEffect(() => {
-    intervalRef.current = setInterval(typingAnimationFunction, 100);
+    // intervalRef.current = setInterval(typingAnimationFunction, 100);
     setImageChangeInterval();
     imageChangeDirRef.current = 1;
 
     return () => {
-      clearInterval(intervalRef.current);
-      clearTimeout(timeoutRef.current);
+      // clearInterval(intervalRef.current);
+      // clearTimeout(timeoutRef.current);
       clearImageChangeInterval();
     };
   }, []);
