@@ -1,5 +1,6 @@
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "";
 import * as XLSX from "xlsx";
+import { publicGeneralSheet } from "../public/sheet";
 
 export const allUsers = async () => {
   const responsePromise = fetch(`${API_BASE_URL}/api/user/admin/all-users`, {
@@ -225,9 +226,23 @@ export const getSheet = async (sheetUrl) => {
       sheetsData[sheetName] = sheetData;
     });
 
+    console.log(sheetsData);
+
     return sheetsData;
   } catch (error) {
     console.error("Error fetching or processing the spreadsheet:", error);
     throw error;
+  }
+};
+
+export const getGeneralSheet = async () => {
+  try {
+    const sheet = await getSheet(
+      "https://docs.google.com/spreadsheets/d/1fibIy-Ts1g5DCO6ETFEN40c7HSj456y04wFdpUvlGJI/export?format=xlsx"
+    );
+    // const sheet = publicGeneralSheet;
+    return sheet;
+  } catch (error) {
+    return "ERROR";
   }
 };

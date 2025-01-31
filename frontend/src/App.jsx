@@ -8,6 +8,7 @@ import Tasks from "./pages/Tasks";
 import Leaderboard from "./pages/Leaderboard";
 import Admin from "./pages/Admin";
 import Incentives from "./pages/Incentives";
+import Structure from "./pages/Structure";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
           <Route path="/tasks" element={<Tasks />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/admin" element={<Admin />} />
+          <Route path="/structure" element={<Structure />} />
         </Routes>
       </Router>
     </>

@@ -1,16 +1,10 @@
 import { useQuery } from "react-query";
 import { Link } from "react-router-dom";
-import { getSheet } from "../api-clients";
+import { getGeneralSheet, getSheet } from "../api-clients";
+import { useAppContext } from "../contexts/AppContext";
 
 export default function Footer() {
-  const { data: links = [] } = useQuery({
-    queryKey: "getSheetData_General",
-    queryFn: () =>
-      getSheet(
-        "https://docs.google.com/spreadsheets/d/1fibIy-Ts1g5DCO6ETFEN40c7HSj456y04wFdpUvlGJI/export?format=xlsx"
-      ),
-    select: (data) => data["Social Media"],
-  });
+  const links = useAppContext()?.genSheet?.["Social Media"] || [];
 
   return (
     <div className="w-full h-0 relative">

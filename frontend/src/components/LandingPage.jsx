@@ -4,6 +4,7 @@ import ScrollTranslateComponent from "./OnScroll";
 import { convertToDownloadLink } from "../functions/ImageUrl";
 import { useQuery } from "react-query";
 import { getSheet } from "../api-clients";
+import { useAppContext } from "../contexts/AppContext";
 
 export default function LandingPage() {
   // const typingHeadArray = ["Be an Ambassador", "Be our Family"];
@@ -40,17 +41,9 @@ export default function LandingPage() {
   //   setTypingHead(typingHeadArray[iRef.current].substring(0, jRef.current));
   // };
 
-  const {
-    data: sheets = {
-      "Landing Page": [{ url: "/home2.jpg", brightness: "0.7" }],
-    },
-  } = useQuery({
-    queryKey: "getSheetData_General",
-    queryFn: () =>
-      getSheet(
-        "https://docs.google.com/spreadsheets/d/1fibIy-Ts1g5DCO6ETFEN40c7HSj456y04wFdpUvlGJI/export?format=xlsx"
-      ),
-  });
+  const sheets = useAppContext()?.genSheet || {
+    "Landing Page": [{ url: "/home2.jpg", brightness: "0.7" }],
+  };
 
   const [imageIndex, setImageIndex] = useState(0);
   const imageChangeDirRef = useRef(null);

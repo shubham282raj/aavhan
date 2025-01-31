@@ -13,6 +13,7 @@ export default function Navbar() {
     ? [
         ["", "Home"],
         ["incentives", "Incentives"],
+        ["structure", "Structure"],
         ["leaderboard", "Leaderboard"],
         ["tasks", "Tasks"],
         ["profile", "Profile"],
@@ -20,6 +21,7 @@ export default function Navbar() {
     : [
         ["", "Home"],
         ["incentives", "Incentives"],
+        ["structure", "Structure"],
         ["leaderboard", "Leaderboard"],
         ["register", "Join Us!"],
         ["login", "Login"],

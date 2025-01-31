@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 import { useQuery } from "react-query";
-import { validateAuthToken } from "../api-clients";
+import { getGeneralSheet, validateAuthToken } from "../api-clients";
 import Toast from "../components/Toast";
 
 const AppContext = createContext(undefined);
@@ -9,6 +9,11 @@ export const AppContextProvider = ({ children }) => {
   const [toast, setToast] = useState(undefined);
   const { isSuccess } = useQuery("validateToken", validateAuthToken, {
     retry: false,
+  });
+
+  const { data: genSheet } = useQuery({
+    queryKey: "getSheetData_General",
+    queryFn: () => getGeneralSheet(),
   });
 
   const [windowSize, setWindowSize] = useState({
@@ -35,6 +40,7 @@ export const AppContextProvider = ({ children }) => {
         isLoggedIn: isSuccess,
         showToast: (message, type = "SUCCESS") => setToast({ message, type }),
         windowSize,
+        genSheet,
       }}
     >
       {children}

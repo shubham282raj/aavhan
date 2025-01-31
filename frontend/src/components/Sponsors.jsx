@@ -1,21 +1,9 @@
-import { useQuery } from "react-query";
-import { getSheet } from "../api-clients";
 import { useState } from "react";
 import ScrollTranslateComponent from "./OnScroll";
+import { useAppContext } from "../contexts/AppContext";
 
 export default function Sponsors() {
-  const {
-    data: sponsors = [1, 2, 3, 4, 5, 6],
-    isError,
-    isSuccess,
-  } = useQuery({
-    queryKey: "getSheetData_General",
-    queryFn: () =>
-      getSheet(
-        "https://docs.google.com/spreadsheets/d/1fibIy-Ts1g5DCO6ETFEN40c7HSj456y04wFdpUvlGJI/export?format=xlsx"
-      ),
-    select: (data) => data["Sponsors"],
-  });
+  const sponsors = useAppContext()?.genSheet?.["Sponsors"] || [];
 
   const countInit = 6;
   const [count, setCount] = useState(countInit);

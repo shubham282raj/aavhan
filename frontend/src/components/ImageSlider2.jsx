@@ -5,13 +5,11 @@ import { convertToDownloadLink } from "../functions/ImageUrl";
 import { useAppContext } from "../contexts/AppContext";
 
 export default function ImageSlider2() {
-  const { data: sheets = { Facilities: [] }, isError } = useQuery({
-    queryKey: "getSheetData_General",
-    queryFn: () =>
-      getSheet(
-        "https://docs.google.com/spreadsheets/d/1fibIy-Ts1g5DCO6ETFEN40c7HSj456y04wFdpUvlGJI/export?format=xlsx"
-      ),
-  });
+  const sheets = useAppContext()?.genSheet?.["Facilities"] || [];
+
+  if (sheets.length == 0) {
+    return <div>Error Loading {sheetName} Section</div>;
+  }
 
   const { windowSize } = useAppContext();
 
