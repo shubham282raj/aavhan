@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useAppContext } from "../contexts/AppContext";
 
@@ -27,8 +27,35 @@ export default function Navbar() {
 
   const navbarHeight = `md:min-h-[70px] md:max-h[70px]`;
 
+  const [isVisible, setIsVisible] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > lastScrollY) {
+        // Scrolling down
+        setIsVisible(false);
+      } else {
+        // Scrolling up
+        setIsVisible(true);
+      }
+      setLastScrollY(window.scrollY);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [lastScrollY]);
+
   return (
-    <div className="w-full">
+    <div
+      className={
+        `w-full fixed z-50 top-0 left-0 transition-transform duration-300 ` +
+        (true ? "translate-y-0" : "-translate-y-full")
+      }
+    >
       {/* <div
         className={navbarHeight}
         style={{
@@ -36,7 +63,7 @@ export default function Navbar() {
         }}
       ></div> */}
       <div
-        className="fixed max-h-screen z-50 top-0 left-0 w-full bg-slate-900 text-white font-bold md:font-normal"
+        className="max-h-screen m-2 bg-slate-900 bg-opacity- rounded-md text-white font-bold md:font-normal"
         id="navbarMain"
       >
         <div

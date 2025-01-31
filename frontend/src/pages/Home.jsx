@@ -7,11 +7,13 @@ import Footer from "../components/Footer";
 import ImageSliderLoaders from "../components/ImageSliderLoaders";
 import ImageSlider2 from "../components/ImageSlider2";
 import Sponsors from "../components/Sponsors";
+import BelowLandingPage from "../components/BelowLandingPage";
 
 export default function Home() {
   return (
     <div className="relative">
       <LandingPage />
+      {/* <BelowLandingPage /> */}
       <AboutSection />
       <Sponsors />
       <ImageSliderLoaders sheetName="Facilities" />
