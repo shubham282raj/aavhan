@@ -3,30 +3,12 @@ import certificate from "../svg/certificate.svg";
 import workshop from "../svg/workshop.svg";
 import gift from "../svg/gift.svg";
 import referral from "../svg/referral.svg";
+import { useAppContext } from "../contexts/AppContext";
 
 export default function Incentives() {
-  const incentives = [
-    [
-      "CERTIFICATE",
-      "Certficate of completion as a Marketing Intern at Aavhan, IIT BOMBAY.",
-      certificate,
-    ],
-    [
-      "WORKSHOP",
-      "Free coding and sports analytics workshops for top 10 CAs.",
-      workshop,
-    ],
-    [
-      "College Thrill",
-      "Enjoy free stays for the top 5 participants in the Aavhan Main Festival!",
-      referral,
-    ],
-    [
-      "Gift Pack of Sponsors",
-      "Chance to win glorious giveaways from noteworthy sponsors and Aavhan",
-      gift,
-    ],
-  ];
+  const incentives = useAppContext()?.genSheet?.["Incentives"] || [];
+  console.log(incentives);
+
   return (
     <div className="px-3 mt-[80px] overflow-hidden py-2 max-w-screen-xl mx-auto">
       <div className="text-slate-800 text-4xl font-bold text-center pb-3">
@@ -37,15 +19,15 @@ export default function Incentives() {
           <ScrollTranslateComponent
             element={
               <>
-                <div className="text-xl font-bold">{incentive[0]}</div>
-                {incentive[2] && (
+                <div className="text-xl font-bold">{incentive.heading}</div>
+                {incentive.icon && (
                   <img
-                    src={incentive[2]}
-                    alt={incentive[0]}
+                    src={incentive.icon}
+                    alt={incentive.heading}
                     className="h-32 m-auto"
                   />
                 )}
-                <div className="">{incentive[1]}</div>
+                <div className="">{incentive.description}</div>
               </>
             }
             className="text-slate-800 bg-white bg-opacity-60 shadow-slate-400 shadow-md rounded-lg px-4 py-5 sm:w-[46%]"
