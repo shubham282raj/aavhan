@@ -1,8 +1,8 @@
 import { refreshLeaderboard, userProfile } from "../api-clients";
 import { useMutation, useQuery } from "react-query";
-import SignOutButton from "../components/SignOutBtn";
+import SignOutButton from "../caComponents/SignOutBtn";
 import { useAppContext } from "../contexts/AppContext";
-import { LoadingAnimation } from "../components/LoadingAnimations";
+import { LoadingAnimation } from "../caComponents/LoadingAnimations";
 import Tasks from "./Tasks";
 
 export default function Profile() {

@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import { getGeneralSheet, validateAuthToken } from "../api-clients";
-import Toast from "../components/Toast";
+import Toast from "../caComponents/Toast";
 
 const AppContext = createContext(undefined);
 

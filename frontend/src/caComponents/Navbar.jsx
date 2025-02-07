@@ -76,7 +76,7 @@ export default function Navbar() {
         >
           <div className="flex items-center justify-between w-full md:w-auto">
             <span className="text-3xl font-bold tracking-tight">
-              <Link to="/" className="flex h-[25px] gap-6">
+              <Link to="" className="flex h-[25px] gap-6">
                 <img src="/logo.png" alt="logo" className="scale-150" />
                 <img
                   src="/text_logo.png"

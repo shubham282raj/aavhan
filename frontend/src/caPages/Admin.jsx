@@ -1,7 +1,7 @@
 import { allUsers } from "../api-clients";
 import { useQuery } from "react-query";
 import { useAppContext } from "../contexts/AppContext";
-import { LoadingAnimation } from "../components/LoadingAnimations";
+import { LoadingAnimation } from "../caComponents/LoadingAnimations";
 import { useState } from "react";
 import { useMutation, useQueryClient } from "react-query";
 import { verifyTask } from "../api-clients";

@@ -3,7 +3,7 @@ import { useMutation, useQueryClient } from "react-query";
 import { loginUser } from "../api-clients";
 import { useAppContext } from "../contexts/AppContext";
 import { Link, useNavigate } from "react-router-dom";
-import BounceLoading from "../components/LoadingAnimations";
+import BounceLoading from "../caComponents/LoadingAnimations";
 
 export default function Login() {
   const { showToast } = useAppContext();

@@ -5,16 +5,11 @@ export default function AboutSection() {
     [
       <>ABOUT AAVHAN</>,
       <>
-        “What we do in life, echoes in Eternity” <br></br> Elude the labyrinth
-        of urban life, inspire the warrior within at Aavhan 2023. <br></br>
-        Aavhan, where the spirit of sport meets the grandeur of camaraderie!
-        Imagine a colossal gathering of over 6000 spirited individuals, hailing
-        from 150+ top-notch colleges, converging at IIT Bombay. For three
-        exhilarating days, we celebrate athleticism, perseverance, and pure
-        euphoria, with a breathtaking lineup of 20+ sports. It's more than a
-        fest; it's an unforgettable sporting spectacle, where champions are
-        born, memories are etched, and bonds are forged. Don't just spectate,
-        participate in the essence of Aavhan! 🏆
+        "What we do in life echoes in eternity." Escape the urban rush and
+        awaken your inner warrior at Aavhan 2023! With 6000+ athletes from 150+
+        colleges, experience 3 days of exhilarating sports, camaraderie, and
+        unforgettable moments at IIT Bombay. Don’t just spectate—be part of the
+        ultimate sporting spectacle! 🏆
       </>,
     ],
     [
@@ -43,7 +38,7 @@ export default function AboutSection() {
 
   return (
     <div>
-      <div className="m-auto my-10 flex flex-col gap-10 px-3 max-w-screen-lg">
+      <div className="m-auto my-10 flex flex-col gap-10 px-3 max-w-screen-md">
         <div>
           <div className="text-black text-2xl font-bold text-center pb-2">
             {sections[0][0]}

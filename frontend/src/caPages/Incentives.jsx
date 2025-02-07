@@ -1,4 +1,4 @@
-import ScrollTranslateComponent from "../components/OnScroll";
+import ScrollTranslateComponent from "../caComponents/OnScroll";
 import certificate from "../svg/certificate.svg";
 import workshop from "../svg/workshop.svg";
 import gift from "../svg/gift.svg";

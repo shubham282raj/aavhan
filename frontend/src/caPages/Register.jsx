@@ -4,7 +4,7 @@ import { getOtp, registerUser } from "../api-clients";
 import { useAppContext } from "../contexts/AppContext";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import BounceLoading from "../components/LoadingAnimations";
+import BounceLoading from "../caComponents/LoadingAnimations";
 
 export default function Register() {
   const { showToast } = useAppContext();

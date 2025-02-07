@@ -1,5 +1,5 @@
 import React from "react";
-import ImageSlider2 from "../components/ImageSlider2";
+import ImageSlider2 from "../caComponents/ImageSlider2";
 
 export default function Structure() {
   return (

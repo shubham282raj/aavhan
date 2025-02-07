@@ -1,8 +1,8 @@
 import { useQuery } from "react-query";
-import { LoadingAnimation } from "../components/LoadingAnimations";
+import { LoadingAnimation } from "../caComponents/LoadingAnimations";
 import { getLeaderboard } from "../api-clients";
 import { useAppContext } from "../contexts/AppContext";
-import ScrollTranslateComponent from "../components/OnScroll";
+import ScrollTranslateComponent from "../caComponents/OnScroll";
 
 export default function Leaderboard() {
   const { showToast } = useAppContext();

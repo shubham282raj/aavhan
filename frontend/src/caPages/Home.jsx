@@ -1,13 +1,13 @@
-import Faqs from "../components/Faqs";
-import Contact from "../components/Contact";
-import AboutSection from "../components/AboutSection";
-import LandingPage from "../components/LandingPage";
+import Faqs from "../caComponents/Faqs";
+import Contact from "../caComponents/Contact";
+import AboutSection from "../caComponents/AboutSection";
+import LandingPage from "../caComponents/LandingPage";
 import layeredSVG from "../svg/layered.svg";
-import Footer from "../components/Footer";
-import ImageSliderLoaders from "../components/ImageSliderLoaders";
-import ImageSlider2 from "../components/ImageSlider2";
-import Sponsors from "../components/Sponsors";
-import BelowLandingPage from "../components/BelowLandingPage";
+import Footer from "../caComponents/Footer";
+import ImageSliderLoaders from "../caComponents/ImageSliderLoaders";
+import ImageSlider2 from "../caComponents/ImageSlider2";
+import Sponsors from "../caComponents/Sponsors";
+import BelowLandingPage from "../caComponents/BelowLandingPage";
 
 export default function Home() {
   return (

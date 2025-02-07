@@ -1,33 +1,55 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Navbar from "./components/Navbar";
-import Home from "./pages/Home";
-import Login from "./pages/Login";
-import Register from "./pages/Register";
-import Profile from "./pages/Profile";
-import Tasks from "./pages/Tasks";
-import Leaderboard from "./pages/Leaderboard";
-import Admin from "./pages/Admin";
-import Incentives from "./pages/Incentives";
-import Structure from "./pages/Structure";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Outlet,
+} from "react-router-dom";
+import Navbar from "./caComponents/Navbar";
+import Home from "./caPages/Home";
+import Login from "./caPages/Login";
+import Register from "./caPages/Register";
+import Profile from "./caPages/Profile";
+import Tasks from "./caPages/Tasks";
+import Leaderboard from "./caPages/Leaderboard";
+import Admin from "./caPages/Admin";
+import Incentives from "./caPages/Incentives";
+import Structure from "./caPages/Structure";
+
+// Layout component to include Navbar and nested routes
+const CaLayout = () => (
+  <>
+    <Navbar />
+    <Outlet /> {/* This will render the nested routes */}
+  </>
+);
 
 function App() {
   return (
-    <>
-      <Router>
-        <Navbar />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/incentives" element={<Incentives />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/leaderboard" element={<Leaderboard />} />
-          <Route path="/tasks" element={<Tasks />} />
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/admin" element={<Admin />} />
-          <Route path="/structure" element={<Structure />} />
-        </Routes>
-      </Router>
-    </>
+    <Router>
+      <Routes>
+        <Route
+          path=""
+          element={
+            <>
+              <Outlet />
+            </>
+          }
+        >
+          <Route path="" element={<></>} />
+        </Route>
+        <Route path="ca" element={<CaLayout />}>
+          <Route index element={<Home />} />
+          <Route path="incentives" element={<Incentives />} />
+          <Route path="login" element={<Login />} />
+          <Route path="register" element={<Register />} />
+          <Route path="leaderboard" element={<Leaderboard />} />
+          <Route path="tasks" element={<Tasks />} />
+          <Route path="profile" element={<Profile />} />
+          <Route path="admin" element={<Admin />} />
+          <Route path="structure" element={<Structure />} />
+        </Route>
+      </Routes>
+    </Router>
   );
 }
 

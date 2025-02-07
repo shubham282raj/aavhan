@@ -1,8 +1,8 @@
 import { userProfile } from "../api-clients";
 import { useQuery } from "react-query";
 import { useAppContext } from "../contexts/AppContext";
-import TaskCard from "../components/TaskCard";
-import { LoadingAnimation } from "../components/LoadingAnimations";
+import TaskCard from "../caComponents/TaskCard";
+import { LoadingAnimation } from "../caComponents/LoadingAnimations";
 import { useState } from "react";
 
 function DoubtTab({ open, setOpen }) {
