@@ -65,7 +65,6 @@ export const getLeaderboard = async () => {
   if (!response.ok) {
     throw new Error(responseBody.message);
   }
-  console.log(responseBody);
   return responseBody;
 };
 
@@ -226,8 +225,6 @@ export const getSheet = async (sheetUrl) => {
       sheetsData[sheetName] = sheetData;
     });
 
-    console.log(sheetsData);
-
     return sheetsData;
   } catch (error) {
     console.error("Error fetching or processing the spreadsheet:", error);
@@ -240,6 +237,7 @@ export const getGeneralSheet = async () => {
     const sheet = await getSheet(
       "https://docs.google.com/spreadsheets/d/1fibIy-Ts1g5DCO6ETFEN40c7HSj456y04wFdpUvlGJI/export?format=xlsx"
     );
+    // console.log(sheet);
     // const sheet = publicGeneralSheet;
     return sheet;
   } catch (error) {

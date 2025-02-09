@@ -7,7 +7,6 @@ import { useAppContext } from "../contexts/AppContext";
 
 export default function Incentives() {
   const incentives = useAppContext()?.genSheet?.["Incentives"] || [];
-  console.log(incentives);
 
   return (
     <div className="px-3 mt-[80px] overflow-hidden py-2 max-w-screen-xl mx-auto">

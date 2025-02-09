@@ -116,7 +116,6 @@ export default function Tasks({ marginTop = true }) {
     },
     onSuccess: (data) => {
       handleSortChange("All", data);
-      console.log(data);
     },
   });
 

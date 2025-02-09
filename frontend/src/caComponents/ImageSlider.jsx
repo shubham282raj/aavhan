@@ -23,7 +23,6 @@ export default function ImageSlider({
   const handleDown = (xPos) => (lastXPos = xPos);
   const handleUp = (xPos, deltaX) => {
     if (!deltaX) deltaX = xPos - lastXPos;
-    console.log(deltaX);
     Math.abs(deltaX) > threshold && (deltaX > 0 ? prevImage() : nextImage());
   };
 

@@ -9,6 +9,67 @@ export const publicGeneralSheet = {
       brightness: 0.3,
     },
   ],
+  "Contact Us": [
+    {
+      name: "Gamil",
+      icon: "https://cdn-icons-png.flaticon.com/512/281/281769.png",
+    },
+    {
+      name: "Instagram",
+      icon: "https://cdn-icons-png.flaticon.com/512/1384/1384063.png",
+    },
+    {
+      name: "Phone",
+      icon: "https://cdn-icons-png.flaticon.com/512/455/455604.png",
+    },
+  ],
+  Incentives: [
+    {
+      heading: "CERTIFICATE",
+      description:
+        "Certificate of completion as a Marketing Intern at Aavhan, IIT BOMBAY.",
+      icon: "https://github.com/shubham282raj/aavhan/raw/refs/heads/main/frontend/src/svg/certificate.svg",
+    },
+    {
+      heading: "WORKSHOP",
+      description: "Free coding and sports analytics workshops for top 10 CAs.",
+      icon: "https://github.com/shubham282raj/aavhan/raw/refs/heads/main/frontend/src/svg/workshop.svg",
+    },
+    {
+      heading: "College Thrill",
+      description:
+        "Enjoy free stays for the top 5 participants in the Aavhan Main Festival!",
+      icon: "https://github.com/shubham282raj/aavhan/raw/refs/heads/main/frontend/src/svg/referral.svg",
+    },
+    {
+      heading: "Gift Pack of Sponsors",
+      description:
+        "Chance to win glorious giveaways from noteworthy sponsors and Aavhan",
+      icon: "https://github.com/shubham282raj/aavhan/raw/refs/heads/main/frontend/src/svg/gift.svg",
+    },
+  ],
+  FAQs: [
+    {
+      question: "What kind of work am I required to do?",
+      answer:
+        "You will be publicizing the events of Aavhan, the annual sports fest of IIT Bombay in your college and will be assigned to do tasks designed to enhance your skills.",
+    },
+    {
+      question: "What will I gain out of it?",
+      answer:
+        "You will gain an experience which will help you develop your time management skills, team spirit and you will become a part of the sporting family of IIT Bombay. Also certificates from Aavhan IIT Bombay, gift packs, sports analysis workshops & internship opportunities in various named NGOs will be given to the deserving Campus Ambassadors.",
+    },
+    {
+      question: "How will we receive updates about tasks?",
+      answer:
+        "You will be informed about the task through the Campus Ambassador Dashboard, social media handles as well as WhatsApp groups.",
+    },
+    {
+      question: "Who can join the program?",
+      answer:
+        "Students from any college, stream, year of college can apply for the Campus Executive Internship Program.",
+    },
+  ],
   Sponsors: [
     {
       heading: "Decathalon",
@@ -211,6 +272,132 @@ export const publicGeneralSheet = {
       url: "https://drive.google.com/file/d/1Q6htGdd6NOGxbkel-cs87pO7u6_X9JMI/view?usp=drive_link",
       heading: "Winners",
       description: "Hard work and dedication turn dreams into reality",
+    },
+  ],
+  Gallery: [
+    {
+      "Past Events":
+        "https://drive.google.com/file/d/1pAxf4eMKtIPRKld6S8u_RbjolxP4L3v4/view?usp=drive_link",
+      Facilities:
+        "https://drive.google.com/file/d/1wGQKEYQl-epHvfUC2zGpFEfEpp2Dr8oF/view?usp=drive_link",
+    },
+    {
+      "Past Events":
+        "https://drive.google.com/file/d/1isVjGFlvLRLi82gVDvQ6gboJFHgjR0x5/view?usp=drive_link",
+      Facilities:
+        "https://drive.google.com/file/d/1YUVogQRE4mSDEkNF3PyhgVR29UYwyOzX/view?usp=drive_link",
+    },
+    {
+      "Past Events":
+        "https://drive.google.com/file/d/1NgW1A_3ElaoT6nUI7xn7smQwkHGYkh3y/view?usp=drive_link",
+      Facilities:
+        "https://drive.google.com/file/d/1yWK0rXKq4iaOlqDuG5NZOKU6_aI2a57_/view?usp=drive_link",
+    },
+    {
+      "Past Events":
+        "https://drive.google.com/file/d/1ND7qdTcOz-VA9tJ07tI8jlH4lixtDDmW/view?usp=drive_link",
+      Facilities:
+        "https://drive.google.com/file/d/1kiYg5VEdivsLxGzsyQ_WpK_MNhk2v_l8/view?usp=drive_link",
+    },
+    {
+      "Past Events":
+        "https://drive.google.com/file/d/1VKnzENAiSbi1TjQ5qOwq92HMo2QT3RYz/view?usp=drive_link",
+      Facilities:
+        "https://drive.google.com/file/d/1vtC3OD41DzwwoX6mk3nrtRl0BxV_FzOJ/view?usp=drive_link",
+    },
+    {
+      "Past Events":
+        "https://drive.google.com/file/d/1KfqKAJqnLifUbRDBeot7nC6P591Hkt5F/view?usp=drive_link",
+      Facilities:
+        "https://drive.google.com/file/d/1kccNxQdRF46NhGlUOxbeKD2uIPlsMrcI/view?usp=drive_link",
+    },
+    {
+      "Past Events":
+        "https://drive.google.com/file/d/1BGqVjdvJf3x_TfveQWcYRjD8G7diyjl1/view?usp=drive_link",
+      Facilities:
+        "https://drive.google.com/file/d/15bNec5J8Fpjq0t6_OpSKYiWy7WvIJvVC/view?usp=drive_link",
+    },
+    {
+      "Past Events":
+        "https://drive.google.com/file/d/1Sbu3JQVVPOUiq-TJCwejVYWp5P36AGCP/view?usp=drive_link",
+      Facilities:
+        "https://drive.google.com/file/d/1XxkFy152r128QvXe6GxMSvYQXvUI0RCc/view?usp=drive_link",
+    },
+    {
+      "Past Events":
+        "https://drive.google.com/file/d/1Kw3eCp0ySwbakhQSmUEOrw8mGuJuyDE1/view?usp=drive_link",
+      Facilities:
+        "https://drive.google.com/file/d/1txXuyGaO2Vi48koPT1yd-6WHtFPl-5cR/view?usp=drive_link",
+    },
+    {
+      "Past Events":
+        "https://drive.google.com/file/d/1I_QVQErcMcK7MPZFm4Z0M_jZxCwyqv6q/view?usp=drive_link",
+      Facilities:
+        "https://drive.google.com/file/d/1YFDNMa_Ej3uJUqPx5tQz7CfH-Qj_vjnq/view?usp=drive_link",
+    },
+    {
+      "Past Events":
+        "https://drive.google.com/file/d/12pHgvBB4Q3zkSvy_HkcmzMTWRv-eKvb8/view?usp=drive_link",
+      Facilities:
+        "https://drive.google.com/file/d/1kXeyHLo6hfoJcYQPxpGn5BFipZl-JdPt/view?usp=drive_link",
+    },
+    {
+      "Past Events":
+        "https://drive.google.com/file/d/1jNaCpnae2D45lDw7ujEb-C0z7BsU7b0p/view?usp=drive_link",
+      Facilities:
+        "https://drive.google.com/file/d/1p0kXeNtlSfvQbm9ksBPr4nSLOS-h_yoG/view?usp=drive_link",
+    },
+    {
+      "Past Events":
+        "https://drive.google.com/file/d/159nSKX-XrWobFS-pMyU_-ACjnzJU4fc7/view?usp=drive_link",
+      Facilities:
+        "https://drive.google.com/file/d/10xBfMDNXFMWTqaEjNSFCCkVr2DIOW1ni/view?usp=drive_link",
+    },
+    {
+      "Past Events":
+        "https://drive.google.com/file/d/1IAJnm3npdwoDZlyPBAyqK0oNL2n8xAvg/view?usp=drive_link",
+      Facilities:
+        "https://drive.google.com/file/d/1aMOzfzs4uOn1KRcZm52G41tWiwQjS_OW/view?usp=drive_link",
+    },
+    {
+      "Past Events":
+        "https://drive.google.com/file/d/1Q6htGdd6NOGxbkel-cs87pO7u6_X9JMI/view?usp=drive_link",
+      Facilities:
+        "https://drive.google.com/file/d/1u7ct-J11Q3fw5EdRIaHUl_CEXPVJFpFk/view?usp=drive_link",
+    },
+  ],
+  "Main Fest": [
+    {
+      title: "Mega Performances",
+      description:
+        "Catch stunning live shows from artists, dancers, and bands—an unforgettable experience.",
+      button: "Instagram >>",
+    },
+    {
+      title: "Workshops & Masterclasses",
+      description:
+        "Learn from industry experts in photography, music production, creative writing, and more.",
+      button: "See More >>",
+    },
+    {
+      title: "Festive Ambience & Theme",
+      description:
+        "Explore beautifully themed spaces, food stalls, and immersive decor celebrating art and culture.",
+      button: "Previous Year Fest >>",
+    },
+    {
+      title: "Cultural Exchange & Networking",
+      description:
+        "Meet and connect with students from all over, expanding your network and friendships.",
+      button: "CA Portal >>",
+    },
+  ],
+  Colors: [
+    {
+      color1: "5e503f",
+      color2: "c6ac8f",
+      color3: "eae0d5",
+      color4: "22333b",
     },
   ],
 };
