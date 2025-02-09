@@ -9,14 +9,15 @@ export default function Navbar() {
 
   const [toggleMenu, setToggleMenu] = useState(false);
 
-  const navigationLinks = isLoggedIn
+  const navigationLinks = true
     ? [
         ["", "Home"],
-        ["incentives", "Incentives"],
-        ["structure", "Structure"],
-        ["leaderboard", "Leaderboard"],
-        ["tasks", "Tasks"],
-        ["profile", "Profile"],
+        ["/#aboutus", "About Us"],
+        ["gallery", "Gallery"],
+        ["ca", "CA Portal"],
+        // ["team", "Our Team"],
+        ["mainfest", "Main Fest"],
+        ["register", "Register"],
       ]
     : [
         ["", "Home"],
@@ -65,8 +66,8 @@ export default function Navbar() {
         }}
       ></div> */}
       <div
-        className="max-h-screen m-2 bg-slate-900 bg-opacity- rounded-md text-white font-bold md:font-normal"
-        id="navbarCa"
+        className="max-h-screen bg-black bg-opacity-70 text-white font-bold md:font-normal"
+        id="navbarMain"
       >
         <div
           className={

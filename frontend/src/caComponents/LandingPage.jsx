@@ -77,7 +77,7 @@ export default function LandingPage() {
 
   useEffect(() => {
     const handleScroll = () => {
-      const navbar = document.getElementById("navbarMain");
+      const navbar = document.getElementById("navbarCa");
       if (window.scrollY > window.innerHeight * 0.9) {
         navbar.classList.remove("bg-transparent");
         navbar.classList.add("bg-slate-900");
@@ -87,7 +87,7 @@ export default function LandingPage() {
       }
     };
 
-    const navbar = document.getElementById("navbarMain");
+    const navbar = document.getElementById("navbarCa");
     navbar.classList.add("bg-transparent");
     navbar.classList.remove("bg-slate-900");
     setTimeout(() => {
@@ -97,10 +97,12 @@ export default function LandingPage() {
     window.addEventListener("scroll", handleScroll);
 
     return () => {
-      const navbar = document.getElementById("navbarMain");
-      navbar.classList.add("bg-slate-900");
-      navbar.classList.remove("bg-transparent");
-      navbar.style.transition = "none";
+      const navbar = document.getElementById("navbarCa");
+      if (navbar) {
+        navbar.classList.add("bg-slate-900");
+        navbar.classList.remove("bg-transparent");
+        navbar.style.transition = "none";
+      }
 
       window.removeEventListener("scroll", handleScroll);
     };

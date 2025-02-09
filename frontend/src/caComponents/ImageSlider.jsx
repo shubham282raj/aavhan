@@ -1,7 +1,12 @@
 import { useEffect, useRef, useState } from "react";
 import { convertToDownloadLink } from "../functions/ImageUrl";
 
-export default function ImageSlider({ images, sheetName }) {
+export default function ImageSlider({
+  images,
+  sheetName,
+  size,
+  showName = true,
+}) {
   const [imageIndex, setImageIndex] = useState(0);
 
   const nextImage = () => {
@@ -42,9 +47,14 @@ export default function ImageSlider({ images, sheetName }) {
 
   return (
     <div className="w-full px-3 my-5">
-      <div className="text-2xl font-bold text-center mb-3">{sheetName}</div>
+      {showName && (
+        <div className="text-2xl font-bold text-center mb-3">{sheetName}</div>
+      )}
       <div
-        className="relative max-w-screen-md mx-auto w-full aspect-[16/10] sm:aspect-video flex overflow-hidden rounded-md"
+        className={
+          "relative max-w-screen-md mx-auto w-full flex overflow-hidden rounded-md " +
+          (size ? `aspect-[${String(size).trim()}]` : "aspect-[16/10]")
+        }
         onMouseEnter={clearImageChangeInterval}
         onMouseLeave={setImageChangeInterval}
       >

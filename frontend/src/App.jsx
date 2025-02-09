@@ -1,53 +1,13 @@
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  Outlet,
-} from "react-router-dom";
-import Navbar from "./caComponents/Navbar";
-import Home from "./caPages/Home";
-import Login from "./caPages/Login";
-import Register from "./caPages/Register";
-import Profile from "./caPages/Profile";
-import Tasks from "./caPages/Tasks";
-import Leaderboard from "./caPages/Leaderboard";
-import Admin from "./caPages/Admin";
-import Incentives from "./caPages/Incentives";
-import Structure from "./caPages/Structure";
-
-// Layout component to include Navbar and nested routes
-const CaLayout = () => (
-  <>
-    <Navbar />
-    <Outlet /> {/* This will render the nested routes */}
-  </>
-);
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import AppMain from "./AppMain";
+import AppCA from "./AppCA";
 
 function App() {
   return (
     <Router>
       <Routes>
-        <Route
-          path=""
-          element={
-            <>
-              <Outlet />
-            </>
-          }
-        >
-          <Route path="" element={<></>} />
-        </Route>
-        <Route path="ca" element={<CaLayout />}>
-          <Route index element={<Home />} />
-          <Route path="incentives" element={<Incentives />} />
-          <Route path="login" element={<Login />} />
-          <Route path="register" element={<Register />} />
-          <Route path="leaderboard" element={<Leaderboard />} />
-          <Route path="tasks" element={<Tasks />} />
-          <Route path="profile" element={<Profile />} />
-          <Route path="admin" element={<Admin />} />
-          <Route path="structure" element={<Structure />} />
-        </Route>
+        <Route path="/*" element={<AppMain />} />
+        <Route path="ca/*" element={<AppCA />} />
       </Routes>
     </Router>
   );

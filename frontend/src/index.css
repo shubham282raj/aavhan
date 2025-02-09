@@ -15,6 +15,12 @@
   scroll-behavior: smooth;
 }
 
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 @keyframes custom-bounce {
   0%,
   100% {
@@ -32,6 +38,7 @@
   background-image: url("/whiteBG.jpg");
   background-repeat: space;
   background-size: cover;
+  background-position: center;
 }
 
 .navbar-bg {
