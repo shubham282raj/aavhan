@@ -1,0 +1,84 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "Custom";
+  src: url("/fonts/custom.ttf") format("truetype");
+}
+
+* {
+  @apply font-custom;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  scroll-behavior: smooth;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes custom-bounce {
+  0%,
+  100% {
+    transform: translateY(-25%);
+    animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+  }
+  50% {
+    transform: translateY(25%);
+    animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  }
+}
+
+.background {
+  /* background: linear-gradient(45deg, rgb(255, 255, 255), rgb(255, 255, 255)); */
+  background-image: url("https://raw.githubusercontent.com/shinchan282nohara/public/refs/heads/main/YSP_7455.jpg");
+  background-repeat: space;
+  background-size: cover;
+  background-position: center;
+  filter: brightness(0.7) contrast(1.2);
+}
+
+.navbar-bg {
+  background: linear-gradient(45deg, rgb(0, 23, 49), rgb(32, 92, 102));
+  background-size: 100vw 100vh; /* Ensures the gradient covers the full size of the div */
+  background-repeat: no-repeat; /* Prevents repeating of the gradient */
+  background-clip: border-box; /* Clips the gradient to the div's border box */
+}
+
+@keyframes appear {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0%);
+  }
+}
+
+.onScrolll {
+  animation: appear linear;
+  animation-duration: 3s;
+  animation-timeline: view(-10px);
+  animation-range: entry 0% cover 40%;
+}
+
+input,
+textarea {
+  background-color: rgba(255, 255, 255, 0.5);
+  outline: none;
+}
+
+.joinUsBtn::after {
+  transition: all 0.4s ease-in-out;
+}
+
+@layer base {
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+}
