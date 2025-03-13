@@ -19,7 +19,7 @@ export default function Register() {
       </p>
       <div className="w-full max-w-screen-lg px-10">
         <iframe
-          src="https://konfhub.com/widget/test-event-7d5fdc2f?desc=false&secondaryBg=F7F7F7&ticketBg=F7F7F7&borderCl=F7F7F7&bg=FFFFFF&fontColor=572148&ticketCl=572148&btnColor=fb5850&fontFamily=Prompt&borderRadius=10"
+          src="https://konfhub.com/widget/a23f2689-7f4f-4c09-a0af-0e539c61218d?desc=false&secondaryBg=F7F7F7&ticketBg=F7F7F7&borderCl=F7F7F7&bg=FFFFFF&fontColor=572148&ticketCl=572148&btnColor=fb5850&fontFamily=Prompt&borderRadius=10"
           id="konfhub-widget"
           title="Register for Test Event"
           width="100%"

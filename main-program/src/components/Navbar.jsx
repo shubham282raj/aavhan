@@ -13,7 +13,7 @@ export default function Navbar() {
     ["", "Home"],
     ["/#aboutus", "About Us"],
     ["gallery", "Gallery"],
-    ["ca", "CA Portal"],
+    ["https://ca.aavhan.in", "CA Portal"],
     // ["team", "Our Team"],
     // ["mainfest", "Main Fest"],
     ["register", "Register"],
