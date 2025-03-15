@@ -137,7 +137,7 @@ export default function Tasks({ marginTop = true }) {
         <DoubtTab open={quesMark} setOpen={toggleQuesMark} />
         <div
           className={
-            "xl:sticky xl:top-[70px] z-10 flex flex-col gap-2 sm:w-full xl:max-w-screen-md mx-auto m-auto mb-3 font-bold tracking-wide text-slate-800 " +
+            "xl:sticky xl:top-[110px] z-10 flex flex-col gap-2 sm:w-full xl:max-w-screen-md mx-auto m-auto mb-3 font-bold tracking-wide text-slate-800 " +
             (marginTop && "mt-20")
           }
         >

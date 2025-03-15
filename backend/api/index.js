@@ -21,13 +21,17 @@ app.use(
   })
 );
 
+app.get("/api", async (req, res) => {
+  res.status(200).send("Hello There API");
+});
+
 app.get("/", async (req, res) => {
   res.status(200).send("Hello There");
 });
 
 app.use("/api", router);
 
-const PORT = process.env.PORT || 7000;
+const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => {
   console.log(`Server is running on PORT ${PORT}`);
